@@ -1,18 +1,11 @@
----
-title: JSTopTabBarController
-description: Tab bar controller on the top of the screen under the main view controller.
-author: Josh Sklar
-tags: ios, UITabBarController
-colors: light yellow
-created:  2013 May 14
-modified: 2013 May 14
-
----
-
-Solarized
+JSTopTabBarController
 =========
 
-JSTopTabBarController is a new way to navigation around your iOS application. It provies a full class that can be used very similarly to a UITabBarController. See the demo for instructions on how to use.
+JSTopTabBarController is a new way to navigation around your iOS application. It provies a full class that can be used very similarly to a UITabBarController. See the demo for instructions on how to use it. Screenshots below.
 
-![screenshot1](/screenshot1.png "Closed")
+![screenshot1](/screenshot1.png)
+![screenshot2](/screenshot2.png)
+![screenshot3](/screenshot3.png)
+
+
 
