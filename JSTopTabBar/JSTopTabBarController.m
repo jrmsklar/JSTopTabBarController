@@ -8,6 +8,7 @@
 
 #import "JSTopTabBarController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
 
 static const CGFloat kTabBarHeight = 70.;
 static const CGFloat kTitleLabelHeight = 30.;
@@ -42,6 +43,8 @@ typedef enum {
 
 @property (strong, nonatomic) UIViewController *mainViewController;
 
+@property (strong, nonatomic) UIView *overlay;
+
 @end
 
 @implementation JSTopTabBarController
@@ -70,6 +73,7 @@ typedef enum {
         self.topTabBarLabels = [[NSMutableArray alloc]initWithCapacity:viewControllers.count];
         
         for (UIViewController *vc in self.viewControllers) {
+            [vc setTopTabBar:self];
             vc.view.frame = self.view.bounds;
 
             UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(xPos, 0, btnWidth, kTabBarHeight)];
@@ -88,6 +92,14 @@ typedef enum {
         
         [self.view addSubview:self.mainViewController.view];
         
+        self.overlay = [[UIView alloc]initWithFrame:self.view.bounds];
+        [self.overlay setBackgroundColor:[UIColor blackColor]];
+        [self.overlay setAlpha:0.];
+        UITapGestureRecognizer *tappedOverlay = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapOverlay:)];
+        [self.overlay addGestureRecognizer:tappedOverlay];
+        
+        [self.mainViewController.view addSubview:self.overlay];
+        
         self.toggleTopTabBar = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 36, 52)];
         self.toggleTopTabBar.layer.shadowColor = [UIColor blackColor].CGColor;
         self.toggleTopTabBar.layer.shadowRadius = 10.;
@@ -96,6 +108,9 @@ typedef enum {
         [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:@"menu_button_image"] forState:UIControlStateNormal];
         [self.view addSubview:self.toggleTopTabBar];
         [self.view bringSubviewToFront:self.toggleTopTabBar];
+        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didPanToggleTopBarButton:)];
+        [self.toggleTopTabBar addGestureRecognizer:pan];
         
         topTabBarPosition = JSTTBTopTabBarNotExposed;
     }
@@ -134,6 +149,11 @@ typedef enum {
     }
 }
 
+- (void)setTitle:(NSString*)title;
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -158,12 +178,14 @@ typedef enum {
             [self move:self.mainViewController.view direction:JSTTBMoveDirectionDown by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
             [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionDown by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
             topTabBarPosition = JSTTBTopTabBarExposed;
+            [self partialFade:self.overlay finalAlpha:0.7 withDuration:animationDuration completionBlock:nil];
             break;
         default:
             /* move the main view controller and the toggle button up */
             [self move:self.mainViewController.view direction:JSTTBMoveDirectionUp by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
             [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionUp by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
             topTabBarPosition = JSTTBTopTabBarNotExposed;
+            [self partialFade:self.overlay finalAlpha:0. withDuration:animationDuration completionBlock:nil];
             break;
     }
 }
@@ -180,6 +202,9 @@ typedef enum {
     nextViewController.view.frame = self.mainViewController.view.frame;
     
     self.mainViewController = nextViewController;
+
+    [self.overlay removeFromSuperview];
+    [self.mainViewController.view addSubview:self.overlay];
     
     [self.view addSubview:self.mainViewController.view];
     [self.view bringSubviewToFront:self.toggleTopTabBar];
@@ -219,4 +244,65 @@ typedef enum {
                      completion:block];
 }
 
+- (void)partialFade:(UIView*)view finalAlpha:(CGFloat)alpha withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block
+{
+    [UIView animateWithDuration:duration
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [view setAlpha:alpha];
+                     }
+                     completion:block];
+}
+
+- (void)didPanToggleTopBarButton:(id)sender
+{
+    UIPanGestureRecognizer *recognizer = (UIPanGestureRecognizer*)sender;
+    if (recognizer.state == UIGestureRecognizerStateChanged ||
+        recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        UIView *draggedButton = recognizer.view;
+        CGPoint translation = [recognizer translationInView:self.view];
+        
+        CGRect newButtonFrame = draggedButton.frame;
+        newButtonFrame.origin.x += translation.x;
+        newButtonFrame.origin.y += translation.y;
+        if (newButtonFrame.origin.x <= 0 || newButtonFrame.origin.y <= self.mainViewController.view.frame.origin.y)
+            return;
+        
+        if (newButtonFrame.origin.x + newButtonFrame.size.width >= [UIScreen mainScreen].bounds.size.width ||
+            newButtonFrame.origin.y + newButtonFrame.size.height >= [UIScreen mainScreen].bounds.size.height)
+            return;
+        
+        draggedButton.frame = newButtonFrame;
+        
+        [recognizer setTranslation:CGPointZero inView:self.view];
+    }
+}
+
+- (void)didTapOverlay:(id)sender
+{
+    [self didTapToggleTopTabBar:nil];
+}
+
+@end
+
+@implementation UIViewController (JSTopTabBarItem)
+
+@dynamic topTabBar;
+
+static const char* topTabBarKey = "TopTabBarKey";
+
+- (JSTopTabBarController*)topTabBar_core {
+    return objc_getAssociatedObject(self, topTabBarKey);
+}
+
+- (JSTopTabBarController*)topTabBar {
+    id result = [self topTabBar_core];
+    return result;
+}
+
+- (void)setTopTabBar:(JSTopTabBarController *)topTabBar {
+    objc_setAssociatedObject(self, topTabBarKey, topTabBar, OBJC_ASSOCIATION_ASSIGN);
+}
 @end

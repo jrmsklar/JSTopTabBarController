@@ -7,6 +7,7 @@
 //
 
 #import "ViewController2.h"
+#import "JSTopTabBarController.h"
 
 @interface ViewController2 ()
 
@@ -40,6 +41,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"%@", self.topTabBar);
 }
 
 @end

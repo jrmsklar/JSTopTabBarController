@@ -26,6 +26,8 @@
  Throws exception if the size of titles is not the same as the number of viewControllers */
 - (void)setImages:(NSArray*)imageNames;
 
+- (void)setTitle:(NSString*)title;
+
 /* the index of the current displayed view controller */
 @property(nonatomic) NSUInteger selectedIndex;
 
@@ -41,5 +43,14 @@
 
 @optional
 - (void)topTabBar:(JSTopTabBarController*)topTabBarController didSelectViewController:(UIViewController*)viewController;
+
+@end
+
+// category on UIViewController to provide access to the topTabBar in the
+// contained viewcontrollers, a la UINavigationController.
+
+@interface UIViewController (JSTopTabBarItem)
+
+@property(nonatomic,retain) JSTopTabBarController *topTabBar;
 
 @end

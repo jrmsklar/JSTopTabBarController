@@ -8,6 +8,7 @@
 
 #import "TableViewController.h"
 #import "ViewController1.h"
+#import "JSTopTabBarController.h"
 
 @interface TableViewController ()
 
@@ -28,6 +29,12 @@
 {
     [super viewDidLoad];
     self.title = @"TableView + Nav";
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"%@", self.topTabBar);
 }
 
 - (void)didReceiveMemoryWarning
