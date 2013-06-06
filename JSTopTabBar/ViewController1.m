@@ -44,8 +44,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSLog(@"%@", self.topTabBar);
-    [self.topTabBar.toggleTopTabBar setHidden:YES];
 }
 
 @end

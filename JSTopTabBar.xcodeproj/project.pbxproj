@@ -22,9 +22,6 @@
 		03FF7D841742C22000FBBADA /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D831742C22000FBBADA /* ViewController1.m */; };
 		03FF7D871742C28900FBBADA /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D861742C28900FBBADA /* ViewController2.m */; };
 		03FF7D8B1742C77C00FBBADA /* menu_button_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FF7D8A1742C77C00FBBADA /* menu_button_image@2x.png */; };
-		03FF7D8F1742CA7300FBBADA /* viewcontroller_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FF7D8C1742CA7300FBBADA /* viewcontroller_background@2x.png */; };
-		03FF7D901742CA7300FBBADA /* navbar_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FF7D8D1742CA7300FBBADA /* navbar_background@2x.png */; };
-		03FF7D911742CA7300FBBADA /* tableview_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FF7D8E1742CA7300FBBADA /* tableview_background@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,9 +48,6 @@
 		03FF7D851742C28900FBBADA /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
 		03FF7D861742C28900FBBADA /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		03FF7D8A1742C77C00FBBADA /* menu_button_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_button_image@2x.png"; sourceTree = "<group>"; };
-		03FF7D8C1742CA7300FBBADA /* viewcontroller_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "viewcontroller_background@2x.png"; sourceTree = "<group>"; };
-		03FF7D8D1742CA7300FBBADA /* navbar_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar_background@2x.png"; sourceTree = "<group>"; };
-		03FF7D8E1742CA7300FBBADA /* tableview_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableview_background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +114,6 @@
 		030F92001742AD5000755F75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				03FF7D8C1742CA7300FBBADA /* viewcontroller_background@2x.png */,
-				03FF7D8D1742CA7300FBBADA /* navbar_background@2x.png */,
-				03FF7D8E1742CA7300FBBADA /* tableview_background@2x.png */,
 				03FF7D8A1742C77C00FBBADA /* menu_button_image@2x.png */,
 				030F92011742AD5000755F75 /* JSTopTabBar-Info.plist */,
 				030F92021742AD5000755F75 /* InfoPlist.strings */,
@@ -192,9 +183,6 @@
 				030F920E1742AD5000755F75 /* Default@2x.png in Resources */,
 				030F92101742AD5000755F75 /* Default-568h@2x.png in Resources */,
 				03FF7D8B1742C77C00FBBADA /* menu_button_image@2x.png in Resources */,
-				03FF7D8F1742CA7300FBBADA /* viewcontroller_background@2x.png in Resources */,
-				03FF7D901742CA7300FBBADA /* navbar_background@2x.png in Resources */,
-				03FF7D911742CA7300FBBADA /* tableview_background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

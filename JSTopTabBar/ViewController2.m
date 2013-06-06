@@ -46,7 +46,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSLog(@"%@", self.topTabBar);
 }
 
 @end

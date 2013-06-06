@@ -29,7 +29,7 @@
     JSTopTabBarController *topTabBarController = [[JSTopTabBarController alloc]initWithViewControllers:@[viewController1, navController1, navController2]];
     
     [topTabBarController setTitles:@[@"Normal", @"Navigation Controller", @"Table + Nav ViewController"]];
-    [topTabBarController setImages:@[@"viewcontroller_background", @"navbar_background", @"tableview_background"]];
+    [topTabBarController setActiveViewController:navController2];
     
     self.window.rootViewController = topTabBarController;
     [self.window makeKeyAndVisible];
