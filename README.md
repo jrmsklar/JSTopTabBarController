@@ -23,7 +23,7 @@ self.window.rootViewController = topTabBarController;
 return YES;
 ```
 
-The `JSTopTabBarController` is instantiated with all of the view controllers in the `init` method, and then the titlres of the buttons are set. Then, the badged tab index is set, and lastly a badge number for that button is set.
+The `JSTopTabBarController` is instantiated with all of the view controllers in the `init` method, and then the titles of the buttons are set. Then, the badged tab index is set, and lastly a badge number for that button is set.
 
 ## Demo
 
