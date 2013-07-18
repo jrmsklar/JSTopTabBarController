@@ -22,11 +22,12 @@ self.window.rootViewController = topTabBarController;
 [self.window makeKeyAndVisible];
 return YES;
 ```
-We instantiate an instance of the `JSTopTabBarController` with all of the view controllers in the `init` method, and then set the titles of the buttons, the badged tab index, or thet index to be badged, and we set a badge number.
+
+The `JSTopTabBarController` is instantiated with all of the view controllers in the `init` method, and then the titlres of the buttons are set. Then, the badged tab index is set, and lastly a badge number for that button is set.
 
 ## Demo
 
-Build and run the `JSTopTabBar` project in Xcode to see `JSTopTabBar` in action.
+Build and run the `JSTopTabBar` project in Xcode to see a full demo of `JSTopTabBar`.
 
 ## Requirments
 
