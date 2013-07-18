@@ -26,7 +26,7 @@ We instantiate an instance of the `JSTopTabBarController` with all of the view c
 
 ## Demo
 
-Build and run the `JSTopTabBar` project to see `JSTopTabBar` in action.
+Build and run the `JSTopTabBar` project in Xcode to see `JSTopTabBar` in action.
 
 ## Requirments
 
