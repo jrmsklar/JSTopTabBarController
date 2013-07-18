@@ -34,5 +34,7 @@ Build and run the `JSTopTabBar` project to see `JSTopTabBar` in action.
 
 ## Screenshot
 
+This is a screenshot from a more complete use of `JSTopTabBarController`.
+
 ![screenshot1](/screenshot1.png)
 
