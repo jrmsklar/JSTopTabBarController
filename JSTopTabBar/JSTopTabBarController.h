@@ -36,13 +36,20 @@
 - (void)setTitles:(NSArray*)titles;
 
 /*
- Optional. If not called, there will be no images, and a default gray-white gradient.
+ Optional. If not called, there will be no images.
  Otherwise, called with the names of the image, as found in the main bundle,
  in order with respect to the viewControllers used in init.
  
  Throws exception if the size of titles is not the same as the number of viewControllers
  */
 - (void)setImages:(NSArray*)imageNames;
+
+/*
+ Optional. If not called, the background will be gray.
+ Otherwise, called with the name of the image, as found in the main bundle,
+ and sets the background to the 'backgroundImageName'
+ */
+- (void)setBackgroundImage:(NSString*)backgroundImageName;
 
 /*
  Optional. If not called, active controller defaults to the
@@ -70,16 +77,19 @@
 - (void)setBadgeNumber:(NSUInteger)badgeNum;
 
 /*
- Optional. Deactives the top tab bar. Hides the toggleTopTabBar buttton.
- Ie. If you are presenting a camera view controller, the top tab bar may not be necessary
+ Optional. If not called, default 'arrow-toptabbar' is used.
+ Otherwise, sets the arrow image to the specified imageName, as
+ found in the main bundle
  */
-- (void)deactiveTopTabBar;
+- (void)setToggleTabBarButtonImage:(NSString*)imageName;
 
 /*
- Optional. Actives the top tab bar. Shows the toggleTopTabBar button.
- Ie. If you are done presenting some view controller (ie. camera view controller),
- you may resume normal JSTopTabBarController activity
+ Optional. If not called, panning will be enabled.
+ Determines whether or not the toggle tab bar button is pannable or not 
  */
+- (void)enablePanningOfToggleTopTabBarButton:(BOOL)panningEnabled;
+
+- (void)deactiveTopTabBar;
 - (void)activateTopTabBar;
 
 /* The index of the current displayed view controller. */
@@ -126,10 +136,12 @@
     UILabel *jsTitleLabel;
     UILabel *badgeLabel;
     UIImageView *activeDotImageView;
+    UIImageView *backgroundImageView;
 }
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)setTitle:(NSString *)title;
+- (void)setImage:(UIImage *)image;
 - (void)setBadgeNumber:(NSUInteger)badgeNumber;
 - (void)setActive:(BOOL)active;
 

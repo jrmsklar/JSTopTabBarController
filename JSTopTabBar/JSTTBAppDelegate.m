@@ -33,6 +33,8 @@
     [topTabBarController setTitles:@[@"Normal", @"Notifications", @"Navigation Controller", @"Table + Nav ViewController"]];
     [topTabBarController setBadgedTabIndex:1];
     [topTabBarController setBadgeNumber:3];
+    [topTabBarController setActiveViewController:navController2];
+    [topTabBarController enablePanningOfToggleTopTabBarButton:NO];
     
     self.window.rootViewController = topTabBarController;
     [self.window makeKeyAndVisible];

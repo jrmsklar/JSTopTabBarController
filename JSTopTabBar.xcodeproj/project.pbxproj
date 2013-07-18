@@ -19,11 +19,11 @@
 		030F92181742ADC000755F75 /* JSTopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030F92171742ADC000755F75 /* JSTopTabBarController.m */; };
 		0362A6FC1798278E005140EF /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362A6FB1798278E005140EF /* ViewController3.m */; };
 		0362A6FE179827F9005140EF /* active-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0362A6FD179827F9005140EF /* active-dot@2x.png */; };
+		038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */; };
 		03FF7D7F1742B99A00FBBADA /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D7E1742B99A00FBBADA /* TableViewController.m */; };
 		03FF7D811742BBDE00FBBADA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF7D801742BBDE00FBBADA /* QuartzCore.framework */; };
 		03FF7D841742C22000FBBADA /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D831742C22000FBBADA /* ViewController1.m */; };
 		03FF7D871742C28900FBBADA /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D861742C28900FBBADA /* ViewController2.m */; };
-		03FF7D8B1742C77C00FBBADA /* menu_button_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FF7D8A1742C77C00FBBADA /* menu_button_image@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +45,7 @@
 		0362A6FA1798278E005140EF /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
 		0362A6FB1798278E005140EF /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
 		0362A6FD179827F9005140EF /* active-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "active-dot@2x.png"; sourceTree = "<group>"; };
+		038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-toptabbar@2x.png"; sourceTree = "<group>"; };
 		03FF7D7D1742B99A00FBBADA /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		03FF7D7E1742B99A00FBBADA /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		03FF7D801742BBDE00FBBADA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -52,7 +53,6 @@
 		03FF7D831742C22000FBBADA /* ViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController1.m; sourceTree = "<group>"; };
 		03FF7D851742C28900FBBADA /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
 		03FF7D861742C28900FBBADA /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
-		03FF7D8A1742C77C00FBBADA /* menu_button_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_button_image@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +121,8 @@
 		030F92001742AD5000755F75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */,
 				0362A6FD179827F9005140EF /* active-dot@2x.png */,
-				03FF7D8A1742C77C00FBBADA /* menu_button_image@2x.png */,
 				030F92011742AD5000755F75 /* JSTopTabBar-Info.plist */,
 				030F92021742AD5000755F75 /* InfoPlist.strings */,
 				030F92051742AD5000755F75 /* main.m */,
@@ -190,8 +190,8 @@
 				030F920C1742AD5000755F75 /* Default.png in Resources */,
 				030F920E1742AD5000755F75 /* Default@2x.png in Resources */,
 				030F92101742AD5000755F75 /* Default-568h@2x.png in Resources */,
-				03FF7D8B1742C77C00FBBADA /* menu_button_image@2x.png in Resources */,
 				0362A6FE179827F9005140EF /* active-dot@2x.png in Resources */,
+				038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

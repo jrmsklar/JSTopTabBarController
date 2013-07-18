@@ -55,6 +55,8 @@ typedef enum {
 
 @property (strong, nonatomic) UIView *overlay;
 
+@property (strong, nonatomic) UIImageView *backgroundImageView;
+
 @property NSUInteger indexOfBadgedTab;
 
 @end
@@ -65,10 +67,11 @@ typedef enum {
 {
     self = [super init];
     if (self) {
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = CGRectMake(0, 0, self.view.frame.size.width, kTabBarHeight);
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor grayColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
-        [self.view.layer insertSublayer:gradient atIndex:0];
+        self.view.backgroundColor = [UIColor grayColor];
+        
+        self.backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kTabBarHeight)];
+        [self.backgroundImageView setImage:nil];
+        [self.view addSubview:self.backgroundImageView];
         
         self.viewControllers = viewControllers;
         
@@ -113,12 +116,12 @@ typedef enum {
         
         [self.mainViewController.view addSubview:self.overlay];
         
-        self.toggleTopTabBar = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width - 52, 0, 36, 52)];
+        self.toggleTopTabBar = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width - 20 - 10, 12, 20, 20)];
         self.toggleTopTabBar.layer.shadowColor = [UIColor blackColor].CGColor;
         self.toggleTopTabBar.layer.shadowRadius = 10.;
         self.toggleTopTabBar.layer.shadowOpacity = 0.5;
-        [self.toggleTopTabBar addTarget:self action:@selector(didTapToggleTopTabBar:) forControlEvents:(UIControlEventTouchUpInside | UIControlEventTouchUpOutside)];
-        [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:@"menu_button_image"] forState:UIControlStateNormal];
+        [self.toggleTopTabBar addTarget:self action:@selector(didTapToggleTopTabBar:) forControlEvents:UIControlEventTouchUpInside];
+        [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:@"arrow-toptabbar"] forState:UIControlStateNormal];
         [self.view addSubview:self.toggleTopTabBar];
         [self.view bringSubviewToFront:self.toggleTopTabBar];
         
@@ -146,21 +149,39 @@ typedef enum {
 {
     NSAssert(imageNames.count == self.topTabBarButtons.count, @"Number of titles was not equal to the number of top tab bar buttons");
     
-    for (UIButton *b in self.topTabBarButtons) {
-        [b setBackgroundImage:[UIImage imageNamed:[imageNames objectAtIndex:b.tag]] forState:UIControlStateNormal];
+    for (JSTopTabBarButton *b in self.topTabBarButtons) {
+        [b setImage:[UIImage imageNamed:[imageNames objectAtIndex:b.tag]]];
     }
+}
+
+- (void)setBackgroundImage:(NSString*)backgroundImageName
+{
+    [self.backgroundImageView setImage:[UIImage imageNamed:backgroundImageName]];
 }
 
 - (void)setActiveViewController:(UIViewController*)viewController
 {
+    NSInteger tag = 0;
     for (UIViewController *vc in self.viewControllers) {
         if (vc == viewController) {
             [self.mainViewController.view removeFromSuperview];
             self.mainViewController = vc;
             [self.view addSubview:self.mainViewController.view];
             [self.view bringSubviewToFront:self.toggleTopTabBar];
+            
+            [self.overlay removeFromSuperview];
+            [self.mainViewController.view addSubview:self.overlay];
+            
+            // update the active indicator on the butons
+            for (JSTopTabBarButton *b in self.topTabBarButtons)
+                if (b.tag == tag)
+                    [b setActive:YES];
+                else
+                    [b setActive:NO];
+            
             return;
         }
+        tag++;
     }
     NSAssert(NO, @"View controller passed to setActiveViewController was not in self.viewControllers");
 }
@@ -179,6 +200,19 @@ typedef enum {
     
     JSTopTabBarButton *b = (JSTopTabBarButton*)[self.topTabBarButtons objectAtIndex:self.indexOfBadgedTab];
     [b setBadgeNumber:badgeNum];
+}
+
+- (void)setToggleTabBarButtonImage:(NSString*)imageName
+{
+    [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+}
+
+- (void)enablePanningOfToggleTopTabBarButton:(BOOL)panningEnabled
+{
+    if (!panningEnabled)
+        [self.toggleTopTabBar removeGestureRecognizer:self.panGestureRecognizer];
+    else
+        [self.toggleTopTabBar addGestureRecognizer:self.panGestureRecognizer];
 }
 
 - (void)deactiveTopTabBar
@@ -420,16 +454,17 @@ static const char* topTabBarKey = "TopTabBarKey";
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1.;
         
-        static const CGFloat kTitleLabelHeight = 30.;
+        static const CGFloat kTitleLabelHeight = 40.;
+        
         jsTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,
                                                                 kTabBarHeight - kTitleLabelHeight,
                                                                 frame.size.width,
                                                                 kTitleLabelHeight)];
         
         [jsTitleLabel setFont:[UIFont systemFontOfSize:11]];
-        [jsTitleLabel setNumberOfLines:2];
+        [jsTitleLabel setNumberOfLines:0];
         [jsTitleLabel setTextColor:[UIColor whiteColor]];
-        [jsTitleLabel setBackgroundColor:[UIColor colorWithRed:0. green:0. blue:0. alpha:0.5]];
+        [jsTitleLabel setBackgroundColor:[UIColor clearColor]];
         [jsTitleLabel setTextAlignment:NSTextAlignmentCenter];
         
         CALayer *layer = [jsTitleLabel layer];
@@ -455,13 +490,19 @@ static const char* topTabBarKey = "TopTabBarKey";
         [badgeLabel setHidden:YES];
         [self addSubview:badgeLabel];
         
-        CGFloat dotSize = 30;
+        static const CGFloat dotSize = 20.;
         
         activeDotImageView = [[UIImageView alloc]initWithFrame:CGRectMake((frame.size.width - dotSize)/2, frame.size.height - dotSize, dotSize, dotSize)];
         [activeDotImageView setImage:[UIImage imageNamed:@"active-dot"]];
         [activeDotImageView setHidden:YES];
         [self addSubview:activeDotImageView];
         [self sendSubviewToBack:activeDotImageView];
+        
+        static const CGFloat kBackgroundImageSize = 50.;
+        
+        backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake((frame.size.width - kBackgroundImageSize)/2, 0, kBackgroundImageSize, kBackgroundImageSize)];
+        [self addSubview:backgroundImageView];
+        [self sendSubviewToBack:backgroundImageView];
         
     }
     return self;
@@ -470,6 +511,11 @@ static const char* topTabBarKey = "TopTabBarKey";
 - (void)setTitle:(NSString *)title
 {
     [jsTitleLabel setText:title];
+}
+
+- (void)setImage:(UIImage *)image
+{
+    [backgroundImageView setImage:image];
 }
 
 - (void)setBadgeNumber:(NSUInteger)badgeNumber

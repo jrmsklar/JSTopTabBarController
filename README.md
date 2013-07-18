@@ -32,7 +32,7 @@ Build and run the `JSTopTabBar` project to see `JSTopTabBar` in action.
 
 `JSTopTabBar` requires the `QuartzCore` framework.
 
-## Screenshots
+## Screenshot
 
 ![screenshot1](/screenshot1.png)
 
