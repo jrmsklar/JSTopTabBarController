@@ -55,6 +55,8 @@ typedef enum {
 
 @property (strong, nonatomic) UIView *overlay;
 
+@property NSUInteger indexOfBadgedTab;
+
 @end
 
 @implementation JSTopTabBarController
@@ -97,6 +99,8 @@ typedef enum {
             i++;
         }
         
+        [[self.topTabBarButtons objectAtIndex:0] setActive:YES];
+        
         self.selectedIndex = 0;
         
         [self.view addSubview:self.mainViewController.view];
@@ -123,6 +127,8 @@ typedef enum {
         [self.toggleTopTabBar addGestureRecognizer:self.panGestureRecognizer];
         
         topTabBarPosition = JSTTBTopTabBarNotExposed;
+        
+        self.indexOfBadgedTab = -1;
     }
     return self;
 }
@@ -159,19 +165,38 @@ typedef enum {
     NSAssert(NO, @"View controller passed to setActiveViewController was not in self.viewControllers");
 }
 
-- (void)setBadgeNumber:(UIViewController*)viewController badgeNumber:(NSUInteger)badgeNum
+- (void)setBadgedTabIndex:(NSUInteger)index
 {
-    int i = 0;
-    for (UIViewController *vc in self.viewControllers) {
-        if (vc == viewController) {
-            JSTopTabBarButton *b = (JSTopTabBarButton*)[self.topTabBarButtons objectAtIndex:i];
-            [b setBadgeNumber:badgeNum];
-            return;
-        }
-        i++;
-    }
+    NSAssert(index < self.viewControllers.count, @"Index passed to setBadgedTabIndex was not less than self.viewcontrollers.count");
     
-    NSAssert(NO, @"View controller passed to setBadgeNumber was not in self.viewControllers");
+    self.indexOfBadgedTab = index;
+}
+
+
+- (void)setBadgeNumber:(NSUInteger)badgeNum
+{
+    NSAssert(self.indexOfBadgedTab != -1, @"indexOfBadgedTab was not yet set");
+    
+    JSTopTabBarButton *b = (JSTopTabBarButton*)[self.topTabBarButtons objectAtIndex:self.indexOfBadgedTab];
+    [b setBadgeNumber:badgeNum];
+}
+
+- (void)deactiveTopTabBar
+{
+    [self.toggleTopTabBar setHidden:YES];
+    for (JSTopTabBarButton *b in self.topTabBarButtons) {
+        [b setHidden:YES];
+    }
+}
+
+- (void)activateTopTabBar
+{
+    [self.toggleTopTabBar setHidden:NO];
+    for (JSTopTabBarButton *b in self.topTabBarButtons) {
+        [b setHidden:NO];
+    }
+    [self.view bringSubviewToFront:self.mainViewController.view];
+    [self.view bringSubviewToFront:self.toggleTopTabBar];
 }
 
 - (void)viewDidLoad
@@ -213,7 +238,12 @@ typedef enum {
 
 - (void)didTapTopTabBarButton:(id)sender
 {
-    UIButton *b = (UIButton*)sender;
+    JSTopTabBarButton *b = (JSTopTabBarButton*)sender;
+    
+    for (JSTopTabBarButton *b in self.topTabBarButtons)
+        [b setActive:NO];
+    
+    [b setActive:YES];
     
     self.selectedIndex = b.tag;
     
@@ -425,6 +455,14 @@ static const char* topTabBarKey = "TopTabBarKey";
         [badgeLabel setHidden:YES];
         [self addSubview:badgeLabel];
         
+        CGFloat dotSize = 30;
+        
+        activeDotImageView = [[UIImageView alloc]initWithFrame:CGRectMake((frame.size.width - dotSize)/2, frame.size.height - dotSize, dotSize, dotSize)];
+        [activeDotImageView setImage:[UIImage imageNamed:@"active-dot"]];
+        [activeDotImageView setHidden:YES];
+        [self addSubview:activeDotImageView];
+        [self sendSubviewToBack:activeDotImageView];
+        
     }
     return self;
 }
@@ -436,13 +474,18 @@ static const char* topTabBarKey = "TopTabBarKey";
 
 - (void)setBadgeNumber:(NSUInteger)badgeNumber
 {
-    if (badgeLabel == 0) {
+    if (badgeNumber == 0) {
         [badgeLabel setHidden:YES];
     }
     else {
         [badgeLabel setHidden:NO];
         [badgeLabel setText:[NSString stringWithFormat:@"%i", badgeNumber]];
     }
+}
+
+- (void)setActive:(BOOL)active
+{
+    [activeDotImageView setHidden:!active];
 }
 
 @end

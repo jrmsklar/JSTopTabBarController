@@ -25,7 +25,7 @@
  */
 - (id)initWithViewControllers:(NSArray*)viewControllers;
 
-/* 
+/*
  Optional. If not called, numbers from 0 - viewControllers.count will be used.
  Otherwise, called with the titles of the view controllers, in order with
  respect to the viewControllers used in init.
@@ -40,12 +40,12 @@
  Otherwise, called with the names of the image, as found in the main bundle,
  in order with respect to the viewControllers used in init.
  
- Throws exception if the size of titles is not the same as the number of viewControllers 
+ Throws exception if the size of titles is not the same as the number of viewControllers
  */
 - (void)setImages:(NSArray*)imageNames;
 
 /*
- Optional. If not called, active controller defaults to the 
+ Optional. If not called, active controller defaults to the
  first view controller passed to init.
  Otherwise, changes the active view controller held by the JSTopTabBarController object
  
@@ -54,9 +54,33 @@
 - (void)setActiveViewController:(UIViewController*)viewController;
 
 /*
- Optional. Sets the badge number on the viewController's respective JSTopTabBarButton.
+ Optional. Sets index's view controller (in order with respect to the view controllers
+ passed to init) to the badged tab, so that when setBadgeNumber is called it knows
+ which tab to used.
+ 
+ Throw exception if index >= the number of view controllers used in init.
  */
-- (void)setBadgeNumber:(UIViewController*)viewController badgeNumber:(NSUInteger)badgeNum;
+- (void)setBadgedTabIndex:(NSUInteger)index;
+
+/*
+ Optional. Sets the badge number on the badged tab set by setBadgedTabIndex.
+ 
+ Throw exception if setBadgedTabIndex: was never called.
+ */
+- (void)setBadgeNumber:(NSUInteger)badgeNum;
+
+/*
+ Optional. Deactives the top tab bar. Hides the toggleTopTabBar buttton.
+ Ie. If you are presenting a camera view controller, the top tab bar may not be necessary
+ */
+- (void)deactiveTopTabBar;
+
+/*
+ Optional. Actives the top tab bar. Shows the toggleTopTabBar button.
+ Ie. If you are done presenting some view controller (ie. camera view controller),
+ you may resume normal JSTopTabBarController activity
+ */
+- (void)activateTopTabBar;
 
 /* The index of the current displayed view controller. */
 @property(nonatomic) NSUInteger selectedIndex;
@@ -79,7 +103,7 @@
 
 // Convenient UIViewController category
 
-/* 
+/*
  Category on UIViewController to provide access to the topTabBar in the
  contained the view controllers used in init.
  */
@@ -91,8 +115,8 @@
 
 // JSTopTabBarBUtton
 
-/* 
- Subclass of UIButton that encompasses everything that a JSTopTabBarButton needs, 
+/*
+ Subclass of UIButton that encompasses everything that a JSTopTabBarButton needs,
  including title label and badge number.
  */
 
@@ -101,10 +125,12 @@
 @private
     UILabel *jsTitleLabel;
     UILabel *badgeLabel;
+    UIImageView *activeDotImageView;
 }
 
 - (id)initWithFrame:(CGRect)frame;
 - (void)setTitle:(NSString *)title;
 - (void)setBadgeNumber:(NSUInteger)badgeNumber;
+- (void)setActive:(BOOL)active;
 
 @end

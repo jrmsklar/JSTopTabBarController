@@ -11,6 +11,7 @@
 
 #import "ViewController1.h"
 #import "ViewController2.h"
+#import "ViewController3.h"
 #import "TableViewController.h"
 
 @implementation JSTTBAppDelegate
@@ -21,15 +22,17 @@
 
     ViewController1 *viewController1 = [[ViewController1 alloc] init];
     ViewController2 *viewController2 = [[ViewController2 alloc] init];
+    ViewController3 *viewController3 = [[ViewController3 alloc]init];
     TableViewController *tableViewController = [[TableViewController alloc]init];
     
     UINavigationController *navController1 = [[UINavigationController alloc]initWithRootViewController:viewController2];
     UINavigationController *navController2 = [[UINavigationController alloc]initWithRootViewController:tableViewController];
     
-    JSTopTabBarController *topTabBarController = [[JSTopTabBarController alloc]initWithViewControllers:@[viewController1, navController1, navController2]];
+    JSTopTabBarController *topTabBarController = [[JSTopTabBarController alloc]initWithViewControllers:@[viewController1, viewController3, navController1, navController2]];
     
-    [topTabBarController setTitles:@[@"Normal", @"Navigation Controller", @"Table + Nav ViewController"]];
-    [topTabBarController setActiveViewController:navController2];
+    [topTabBarController setTitles:@[@"Normal", @"Notifications", @"Navigation Controller", @"Table + Nav ViewController"]];
+    [topTabBarController setBadgedTabIndex:1];
+    [topTabBarController setBadgeNumber:3];
     
     self.window.rootViewController = topTabBarController;
     [self.window makeKeyAndVisible];
