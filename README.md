@@ -9,6 +9,8 @@ You may provide as many different view controllers as you'd like, and  `JSTopTab
 
 ## Usage
 
+Drag `JSTopTabBarController.h` and `JSTopTabBarController.m` into your project and add the following code.
+
 In the AppDelegate.m, under application:DidFinishLaunching:withOptions, modify your window initialization code to the following.
 After instantiating all of the main view controllers, use the following code:
 ``` objective-c
