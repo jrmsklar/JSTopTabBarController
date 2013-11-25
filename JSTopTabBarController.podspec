@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.source_files  = 'JSTopTabBar/JSTopTabBarController.{h,m}'
   s.exclude_files = 'Classes/Exclude'
 
-  s.resources = "JSTopTabBar/Assets/*.png"
+  s.resources = 'JSTopTabBar/*@2x.png'
 
   s.framework  = 'QuartzCore'
 
