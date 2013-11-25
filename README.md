@@ -41,3 +41,7 @@ This is a screenshot from a more complete use of `JSTopTabBarController`.
 
 ![screenshot1](/screenshot1.png)
 
+## License
+
+Usage is provided under the [MIT License](http://opensource.org/licenses/mit-license.php). See LICENSE for the full details.
+
