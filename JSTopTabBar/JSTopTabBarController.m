@@ -16,6 +16,8 @@ static const CGFloat kStatusBarHeight = 20;
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 typedef enum {
     JSTTBTopTabBarExposed,
     JSTTBTopTabBarNotExposed
@@ -116,7 +118,14 @@ typedef enum {
         
         [self.mainViewController.view addSubview:self.overlay];
         
-        self.toggleTopTabBar = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width - 20 - 10, 12, 20, 20)];
+        CGRect frame;
+        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+            frame = CGRectMake(self.view.bounds.size.width - 20 - 10, 30, 20, 20);
+        else
+            frame = CGRectMake(self.view.bounds.size.width - 20 - 10, 12, 20, 20);
+        
+        self.toggleTopTabBar = [[UIButton alloc]initWithFrame:frame];
         self.toggleTopTabBar.layer.shadowColor = [UIColor blackColor].CGColor;
         self.toggleTopTabBar.layer.shadowRadius = 10.;
         self.toggleTopTabBar.layer.shadowOpacity = 0.5;
