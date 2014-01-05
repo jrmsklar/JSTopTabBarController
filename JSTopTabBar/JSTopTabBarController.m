@@ -552,6 +552,25 @@ static const char* topTabBarKey = "TopTabBarKey";
 - (void)setActive:(BOOL)active
 {
     [activeDotImageView setHidden:!active];
+    if (!active) {
+        [jsTitleLabel setTextColor:[UIColor whiteColor]];
+        [jsTitleLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:11]];
+    }
+    else {
+        [jsTitleLabel setTextColor:[UIColor blueColor]];
+        [jsTitleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:10]];
+    }
+}
+
+- (void)enableBorder:(BOOL)enabled
+{
+    [jsTitleLabelLeftBorder setHidden:!enabled];
+    [jsTitleLabelRightBorder setHidden:!enabled];
+    
+    if (enabled)
+        self.layer.borderWidth = 1.;
+    else
+        self.layer.borderWidth = 0.;
 }
 
 @end

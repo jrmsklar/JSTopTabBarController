@@ -144,6 +144,7 @@
 {
 @private
     UILabel *jsTitleLabel;
+    CALayer *jsTitleLabelRightBorder, *jsTitleLabelLeftBorder;
     UILabel *badgeLabel;
     UIImageView *activeDotImageView;
     UIImageView *backgroundImageView;
@@ -154,5 +155,6 @@
 - (void)setImage:(UIImage *)image;
 - (void)setBadgeNumber:(NSUInteger)badgeNumber;
 - (void)setActive:(BOOL)active;
+- (void)enableBorder:(BOOL)enabled;
 
 @end
