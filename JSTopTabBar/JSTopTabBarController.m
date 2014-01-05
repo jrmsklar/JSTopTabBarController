@@ -200,6 +200,12 @@ typedef enum {
     NSAssert(NO, @"View controller passed to setActiveViewController was not in self.viewControllers");
 }
 
+- (void)setActiveViewControllerWithIndex:(NSUInteger)index
+{
+    NSAssert(index < self.viewControllers.count, @"Index passed to setActiveViewControllerWithIndex was out of bounds of self.viewControllers.count");
+    [self setActiveViewController:[self.viewControllers objectAtIndex:index]];
+}
+
 - (void)setBadgedTabIndex:(NSUInteger)index
 {
     NSAssert(index < self.viewControllers.count, @"Index passed to setBadgedTabIndex was not less than self.viewcontrollers.count");

@@ -66,6 +66,11 @@
 - (void)setActiveViewController:(UIViewController*)viewController;
 
 /*
+ Optional. Same specifications as above, but uses integer indexing.
+ */
+- (void)setActiveViewControllerWithIndex:(NSUInteger)index;
+
+/*
  Optional. Sets index's view controller (in order with respect to the view controllers
  passed to init) to the badged tab, so that when setBadgeNumber is called it knows
  which tab to used.
