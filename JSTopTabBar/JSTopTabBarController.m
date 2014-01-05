@@ -241,6 +241,19 @@ typedef enum {
         [btn enableBorder:enabled];
 }
 
+- (void)enableShadowOnTopTabBarButton:(BOOL)enabled
+{
+    if (enabled) {
+        self.toggleTopTabBar.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.toggleTopTabBar.layer.shadowRadius = 10.;
+        self.toggleTopTabBar.layer.shadowOpacity = 0.5;
+    }
+    else {
+        self.toggleTopTabBar.layer.shadowRadius = 0.;
+        self.toggleTopTabBar.layer.shadowOpacity = 0.;
+    }
+}
+
 - (void)deactiveTopTabBar
 {
     [self.toggleTopTabBar setHidden:YES];

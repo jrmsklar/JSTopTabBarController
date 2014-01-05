@@ -107,6 +107,12 @@
  */
 - (void)enableBordersOnTopTabBarButtons:(BOOL)enabled;
 
+/*
+ Optional. If not called, there will be no shadow on the top tab bar button.
+ Otherwise, sets if the shadow is there or not.
+ */
+- (void)enableShadowOnTopTabBarButton:(BOOL)enabled;
+
 - (void)deactiveTopTabBar;
 - (void)activateTopTabBar;
 

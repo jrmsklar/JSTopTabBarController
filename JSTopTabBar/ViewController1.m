@@ -11,6 +11,8 @@
 
 @interface ViewController1 ()
 
+- (void)didTapToggleShadow:(UIButton*)sender;
+
 @end
 
 @implementation ViewController1
@@ -32,8 +34,6 @@
                action:@selector(didTapToggleButton:)
      forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:toggle];
-    
     UIButton *enableBorder = [[UIButton alloc]
                               initWithFrame:CGRectMake(0, 170, self.view.frame.size.width, 50)];
     [enableBorder setTitle:@"Toggle JSTTBC button border"
@@ -41,12 +41,20 @@
     [enableBorder addTarget:self
                      action:@selector(didTapToggleEnableBorder:)
            forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:enableBorder];
     
-    for (UIButton *b in @[toggle, enableBorder]) {
+    UIButton *toggleShadow = [[UIButton alloc]
+                              initWithFrame:CGRectMake(0, 230, self.view.frame.size.width, 50)];
+    [toggleShadow setTitle:@"Toggle JSTTBC button shadow"
+                  forState:UIControlStateNormal];
+    [toggleShadow addTarget:self
+                     action:@selector(didTapToggleShadow:)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    for (UIButton *b in @[toggle, enableBorder, toggleShadow]) {
         [b setTitleColor:[UIColor blueColor]
                      forState:UIControlStateNormal];
         [b setBackgroundColor:[UIColor yellowColor]];
+        [self.view addSubview:b];
     }
 }
 
@@ -62,6 +70,13 @@
     static BOOL toggle = NO;
     [self.topTabBar enableBordersOnTopTabBarButtons:toggle];
     toggle = !toggle;
+}
+
+- (void)didTapToggleShadow:(UIButton*)sender
+{
+    static BOOL toggleShadow = NO;
+    [self.topTabBar enableShadowOnTopTabBarButton:toggleShadow];
+    toggleShadow = !toggleShadow;
 }
 
 @end
