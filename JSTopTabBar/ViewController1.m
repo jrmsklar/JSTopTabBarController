@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    UILabel *l = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    UILabel *l = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, self.view.frame.size.width, 50)];
     [l setTextAlignment:NSTextAlignmentCenter];
     [l setText:@"This is an empty view controller."];
     [self.view addSubview:l];
