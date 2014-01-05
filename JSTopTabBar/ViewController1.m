@@ -15,15 +15,6 @@
 
 @implementation ViewController1
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,18 +23,26 @@
     [l setTextAlignment:NSTextAlignmentCenter];
     [l setText:@"This is a normal view controller."];
     [self.view addSubview:l];
-	// Do any additional setup after loading the view.
+    
+    UIButton *toggle = [[UIButton alloc]
+                        initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 50)];
+    [toggle setTitle:@"Toggle JSTTBC"
+            forState:UIControlStateNormal];
+    [toggle setTitleColor:[UIColor blueColor]
+                 forState:UIControlStateNormal];
+    [toggle setBackgroundColor:[UIColor yellowColor]];
+    [toggle addTarget:self
+               action:@selector(didTapToggleButton:)
+     forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:toggle];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Internal methods
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)didTapToggleButton:(UIButton*)sender
 {
-    [super viewDidAppear:animated];
+    [self.topTabBar performToggleTopTabBar];
 }
 
 @end
