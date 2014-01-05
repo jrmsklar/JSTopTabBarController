@@ -16,10 +16,10 @@
 		030F920C1742AD5000755F75 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 030F920B1742AD5000755F75 /* Default.png */; };
 		030F920E1742AD5000755F75 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 030F920D1742AD5000755F75 /* Default@2x.png */; };
 		030F92101742AD5000755F75 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 030F920F1742AD5000755F75 /* Default-568h@2x.png */; };
-		030F92181742ADC000755F75 /* JSTopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030F92171742ADC000755F75 /* JSTopTabBarController.m */; };
 		0362A6FC1798278E005140EF /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362A6FB1798278E005140EF /* ViewController3.m */; };
 		0362A6FE179827F9005140EF /* active-dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0362A6FD179827F9005140EF /* active-dot@2x.png */; };
 		038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */; };
+		03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A23489187905B600F5D68F /* JSTopTabBarController.m */; };
 		03FF7D7F1742B99A00FBBADA /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D7E1742B99A00FBBADA /* TableViewController.m */; };
 		03FF7D811742BBDE00FBBADA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF7D801742BBDE00FBBADA /* QuartzCore.framework */; };
 		03FF7D841742C22000FBBADA /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D831742C22000FBBADA /* ViewController1.m */; };
@@ -40,12 +40,12 @@
 		030F920B1742AD5000755F75 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		030F920D1742AD5000755F75 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		030F920F1742AD5000755F75 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		030F92161742ADC000755F75 /* JSTopTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTopTabBarController.h; sourceTree = "<group>"; };
-		030F92171742ADC000755F75 /* JSTopTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTopTabBarController.m; sourceTree = "<group>"; };
 		0362A6FA1798278E005140EF /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
 		0362A6FB1798278E005140EF /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
 		0362A6FD179827F9005140EF /* active-dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "active-dot@2x.png"; sourceTree = "<group>"; };
 		038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-toptabbar@2x.png"; sourceTree = "<group>"; };
+		03A23488187905B600F5D68F /* JSTopTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTopTabBarController.h; sourceTree = SOURCE_ROOT; };
+		03A23489187905B600F5D68F /* JSTopTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTopTabBarController.m; sourceTree = SOURCE_ROOT; };
 		03FF7D7D1742B99A00FBBADA /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		03FF7D7E1742B99A00FBBADA /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		03FF7D801742BBDE00FBBADA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -103,8 +103,8 @@
 			children = (
 				030F92081742AD5000755F75 /* JSTTBAppDelegate.h */,
 				030F92091742AD5000755F75 /* JSTTBAppDelegate.m */,
-				030F92161742ADC000755F75 /* JSTopTabBarController.h */,
-				030F92171742ADC000755F75 /* JSTopTabBarController.m */,
+				03A23488187905B600F5D68F /* JSTopTabBarController.h */,
+				03A23489187905B600F5D68F /* JSTopTabBarController.m */,
 				03FF7D821742C22000FBBADA /* ViewController1.h */,
 				03FF7D831742C22000FBBADA /* ViewController1.m */,
 				03FF7D851742C28900FBBADA /* ViewController2.h */,
@@ -203,8 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				030F92061742AD5000755F75 /* main.m in Sources */,
+				03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */,
 				030F920A1742AD5000755F75 /* JSTTBAppDelegate.m in Sources */,
-				030F92181742ADC000755F75 /* JSTopTabBarController.m in Sources */,
 				03FF7D7F1742B99A00FBBADA /* TableViewController.m in Sources */,
 				03FF7D841742C22000FBBADA /* ViewController1.m in Sources */,
 				03FF7D871742C28900FBBADA /* ViewController2.m in Sources */,
