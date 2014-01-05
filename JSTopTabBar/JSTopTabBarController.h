@@ -102,8 +102,6 @@
 /*
  Optional. If not called, white borders will be present on top tab bar butons.
  Determines whether there are borders around the top tab bar buttons.
- The borders on the right/left side of the title labels
- are not affected by this method.
  */
 - (void)enableBordersOnTopTabBarButtons:(BOOL)enabled;
 
@@ -158,7 +156,6 @@
 {
 @private
     UILabel *jsTitleLabel;
-    CALayer *jsTitleLabelRightBorder, *jsTitleLabelLeftBorder;
     UILabel *badgeLabel;
     UIImageView *activeDotImageView;
     UIImageView *backgroundImageView;

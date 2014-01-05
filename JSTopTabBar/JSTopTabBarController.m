@@ -506,18 +506,6 @@ static const char* topTabBarKey = "TopTabBarKey";
         [jsTitleLabel setBackgroundColor:[UIColor clearColor]];
         [jsTitleLabel setTextAlignment:NSTextAlignmentCenter];
         
-        CALayer *layer = [jsTitleLabel layer];
-        CALayer *leftBorder = [CALayer layer];
-        leftBorder.borderColor = [UIColor whiteColor].CGColor;
-        leftBorder.borderWidth = 1.;
-        leftBorder.frame = CGRectMake(0, 0, 1, layer.frame.size.height);
-        [layer addSublayer:leftBorder];
-        CALayer *rightBorder = [CALayer layer];
-        rightBorder.borderColor = [UIColor whiteColor].CGColor;
-        rightBorder.borderWidth = 1.;
-        rightBorder.frame = CGRectMake(layer.frame.size.width - 1, 0, 1, layer.frame.size.height);
-        [layer addSublayer:rightBorder];
-        
         [self addSubview:jsTitleLabel];
         
         badgeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -583,9 +571,6 @@ static const char* topTabBarKey = "TopTabBarKey";
 
 - (void)enableBorder:(BOOL)enabled
 {
-    [jsTitleLabelLeftBorder setHidden:!enabled];
-    [jsTitleLabelRightBorder setHidden:!enabled];
-    
     if (enabled)
         self.layer.borderWidth = 1.;
     else
