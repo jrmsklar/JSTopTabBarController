@@ -145,6 +145,11 @@ typedef enum {
     return self;
 }
 
+- (void)performToggleTopTabBar
+{
+    [self didTapToggleTopTabBar:nil];
+}
+
 - (void)setTitles:(NSArray *)titles
 {
     NSAssert(titles.count == self.topTabBarButtons.count, @"Number of titles was not equal to the number of top tab bar buttons");

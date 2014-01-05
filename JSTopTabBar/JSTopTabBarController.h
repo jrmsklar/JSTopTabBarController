@@ -26,6 +26,11 @@
 - (id)initWithViewControllers:(NSArray*)viewControllers;
 
 /*
+ Optional. Programatically toggles the top tab bar.
+ */
+- (void)performToggleTopTabBar;
+
+/*
  Optional. If not called, numbers from 0 - viewControllers.count will be used.
  Otherwise, called with the titles of the view controllers, in order with
  respect to the viewControllers used in init.
