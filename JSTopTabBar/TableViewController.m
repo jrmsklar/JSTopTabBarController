@@ -7,7 +7,7 @@
 //
 
 #import "TableViewController.h"
-#import "ViewController1.h"
+#import "ViewController2.h"
 #import "JSTopTabBarController.h"
 
 @interface TableViewController ()
@@ -74,8 +74,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ViewController1 *vc1 = [[ViewController1 alloc]init];
-    [self.navigationController pushViewController:vc1 animated:YES];
+    ViewController2 *vc2 = [[ViewController2 alloc]init];
+    [self.navigationController pushViewController:vc2 animated:YES];
 }
 
 @end
