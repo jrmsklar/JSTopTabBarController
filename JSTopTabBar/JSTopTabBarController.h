@@ -95,9 +95,17 @@
 
 /*
  Optional. If not called, panning will be enabled.
- Determines whether or not the toggle tab bar button is pannable or not 
+ Determines whether or not the toggle tab bar button is pannable or not
  */
 - (void)enablePanningOfToggleTopTabBarButton:(BOOL)panningEnabled;
+
+/*
+ Optional. If not called, white borders will be present on top tab bar butons.
+ Determines whether there are borders around the top tab bar buttons.
+ The borders on the right/left side of the title labels
+ are not affected by this method.
+ */
+- (void)enableBordersOnTopTabBarButtons:(BOOL)enabled;
 
 - (void)deactiveTopTabBar;
 - (void)activateTopTabBar;

@@ -235,6 +235,12 @@ typedef enum {
         [self.toggleTopTabBar addGestureRecognizer:self.panGestureRecognizer];
 }
 
+- (void)enableBordersOnTopTabBarButtons:(BOOL)enabled
+{
+    for (JSTopTabBarButton *btn in self.topTabBarButtons)
+        [btn enableBorder:enabled];
+}
+
 - (void)deactiveTopTabBar
 {
     [self.toggleTopTabBar setHidden:YES];
