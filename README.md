@@ -1,7 +1,7 @@
 JSTopTabBarController
 =========
 
-**A new different interface for navigation in your iOS application**
+**A new different navigation interface in your iOS application**
 
 `JSTopTabBarController` is a new way to navigate around your iOS application. It provides a complete class that can be used very similarly to the UITabBarController class. It contains a toggle button that sits above any `UIViewController` or subclass of, and when tapped, the main view controller shifts downward and tab-buttons are shown. When one of those buttons is tapped, the main view shifts back up, and switches to whichever view corresponds to the button tapped.
 
