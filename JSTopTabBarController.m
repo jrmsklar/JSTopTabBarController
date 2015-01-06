@@ -93,8 +93,9 @@ typedef enum {
             [vc setTopTabBar:self];
             vc.view.frame = self.view.bounds;
             
+            // TODO: Ues AutoLayout
             JSTopTabBarButton *b = [[JSTopTabBarButton alloc]initWithFrame:CGRectMake(xPos, 0, btnWidth, kTabBarHeight)];
-            [b setTitle:[NSString stringWithFormat:@"%i", i]];
+            [b setTitle:[NSString stringWithFormat:@"%li", (long)i]];
             b.tag = i;
             [b addTarget:self action:@selector(didTapTopTabBarButton:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:b];
