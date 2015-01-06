@@ -112,6 +112,7 @@ typedef enum {
         
         [self.view addSubview:self.mainViewController.view];
         
+        // TODO: Use AutoLayout. Make this constrainted to the self.view
         self.overlay = [[UIView alloc]initWithFrame:self.view.bounds];
         [self.overlay setBackgroundColor:[UIColor blackColor]];
         [self.overlay setAlpha:0.];
@@ -122,6 +123,7 @@ typedef enum {
         
         CGRect frame;
         
+        // TODO: Don't use raw constants
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
             frame = CGRectMake(self.view.bounds.size.width - 20 - 10, 30, 20, 20);
         else
@@ -573,6 +575,7 @@ static const char* topTabBarKey = "TopTabBarKey";
         backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake((frame.size.width - kBackgroundImageSize)/2, 0, kBackgroundImageSize, kBackgroundImageSize)];
         [self addSubview:backgroundImageView];
         [self sendSubviewToBack:backgroundImageView];
+        // TODO: Maybe remove this (the activeDot)
         
     }
     return self;
