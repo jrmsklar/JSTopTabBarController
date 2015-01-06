@@ -71,7 +71,8 @@ typedef enum {
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
         
-        self.backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kTabBarHeight)];
+        self.backgroundImageView = [[UIImageView alloc]
+                                    initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), kTabBarHeight)];
         [self.backgroundImageView setImage:nil];
         [self.view addSubview:self.backgroundImageView];
         
