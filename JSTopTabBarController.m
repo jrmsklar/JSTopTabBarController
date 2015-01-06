@@ -494,30 +494,71 @@ static const char* topTabBarKey = "TopTabBarKey";
         // configure border
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1.;
+    
+        jsTitleLabel = [[UILabel alloc]init];
+        jsTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:jsTitleLabel];
         
-        static const CGFloat kTitleLabelHeight = 40.;
+        badgeLabel = [[UILabel alloc]init];
+        badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:badgeLabel];
         
-        jsTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,
-                                                                kTabBarHeight - kTitleLabelHeight,
-                                                                frame.size.width,
-                                                                kTitleLabelHeight)];
+        backgroundImageView = [[UIImageView alloc]init];
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:backgroundImageView];
+        [self sendSubviewToBack:backgroundImageView];
         
+        NSDictionary *views = NSDictionaryOfVariableBindings(jsTitleLabel, badgeLabel, backgroundImageView);
+        
+        // Add constraints for the titleLabel
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[jsTitleLabel]|"
+                                                                     options:kNilOptions
+                                                                     metrics:nil
+                                                                       views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[jsTitleLabel]|"
+                                                                     options:kNilOptions
+                                                                     metrics:nil
+                                                                       views:views]];
+        
+        // Add constraints for the backgroundImageView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:backgroundImageView
+                                                         attribute:NSLayoutAttributeCenterX
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self
+                                                         attribute:NSLayoutAttributeCenterX
+                                                        multiplier:1.
+                                                          constant:0.]];
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[backgroundImageView]-[jsTitleLabel]"
+                                                                     options:kNilOptions
+                                                                     metrics:nil
+                                                                       views:views]];
         [jsTitleLabel setFont:[UIFont systemFontOfSize:11]];
         [jsTitleLabel setNumberOfLines:0];
         [jsTitleLabel setTextColor:[UIColor whiteColor]];
         [jsTitleLabel setBackgroundColor:[UIColor clearColor]];
         [jsTitleLabel setTextAlignment:NSTextAlignmentCenter];
         
-        [self addSubview:jsTitleLabel];
+        NSDictionary *metrics = @{@"badgeLabelSize": @20};
         
-        badgeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+        // Add constraints for the badgeLabel
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[badgeLabel(badgeLabelSize)]"
+                                                                    options:kNilOptions
+                                                                    metrics:metrics
+                                                                       views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[badgeLabel(badgeLabelSize)]"
+                                                                    options:kNilOptions
+                                                                    metrics:metrics
+                                                                       views:views]];
+        
+        
         badgeLabel.backgroundColor = [UIColor redColor];
-        [badgeLabel setFont:[UIFont boldSystemFontOfSize:10]];
+        [badgeLabel setFont:[UIFont boldSystemFontOfSize:11]];
         badgeLabel.textColor = [UIColor whiteColor];
         badgeLabel.textAlignment = NSTextAlignmentCenter;
         badgeLabel.layer.cornerRadius = 5.;
         [badgeLabel setHidden:YES];
-        [self addSubview:badgeLabel];
         
         static const CGFloat dotSize = 20.;
         
