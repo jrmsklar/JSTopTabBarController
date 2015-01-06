@@ -56,7 +56,16 @@
                      action:@selector(didTapToggleShadow:)
            forControlEvents:UIControlEventTouchUpInside];
     
-    for (UIButton *b in @[toggle, toggleBorders, toggleShadow]) {
+    UIButton *togglePanning = [[UIButton alloc]
+                               initWithFrame:CGRectMake(0, 280, CGRectGetWidth(self.view.frame), btnHeight)];
+    [togglePanning setTitle:@"Toggle JSTTBC arrow button panning"
+                   forState:UIControlStateNormal];
+    [togglePanning addTarget:self
+                      action:@selector(didTapTogglePanning:)
+            forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    for (UIButton *b in @[toggle, toggleBorders, toggleShadow, togglePanning]) {
         [b setTitleColor:[UIColor blueColor]
                      forState:UIControlStateNormal];
         [b setTitleColor:[UIColor grayColor]
@@ -85,6 +94,13 @@
     static BOOL toggleShadow = NO;
     [self.topTabBar enableShadowOnTopTabBarButton:toggleShadow];
     toggleShadow = !toggleShadow;
+}
+
+- (void)didTapTogglePanning:(UIButton*)sender
+{
+    static BOOL togglePanning = YES;
+    [self.topTabBar enablePanningOfToggleTopTabBarButton:togglePanning];
+    togglePanning = !togglePanning;
 }
 
 @end
