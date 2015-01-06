@@ -30,6 +30,8 @@
     
     static const CGFloat btnHeight = 50;
     
+    // TODO: Move all these to a xib file.
+    
     UIButton *toggle = [[UIButton alloc]
                         initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, btnHeight)];
     [toggle setTitle:@"Toggle JSTTBC"
