@@ -38,7 +38,7 @@
  Throws exception if the size of titles is not the same as the number of the view controllers
  used in init.
  */
-- (void)setTitles:(NSArray*)titles;
+- (void)setButtonTitles:(NSArray*)titles;
 
 /*
  Optional. If not called, there will be no images.

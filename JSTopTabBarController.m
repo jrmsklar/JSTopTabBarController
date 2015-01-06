@@ -150,12 +150,12 @@ typedef enum {
     [self didTapToggleTopTabBar:nil];
 }
 
-- (void)setTitles:(NSArray *)titles
+- (void)setButtonTitles:(NSArray *)titles
 {
     NSAssert(titles.count == self.topTabBarButtons.count, @"Number of titles was not equal to the number of top tab bar buttons");
     
-    for (JSTopTabBarButton *b in self.topTabBarButtons) {
-        [b setTitle:[titles objectAtIndex:b.tag]];
+    for (JSTopTabBarButton *button in self.topTabBarButtons) {
+        [button setTitle:[titles objectAtIndex:button.tag]];
     }
 }
 

@@ -31,7 +31,7 @@
     JSTopTabBarController *topTabBarController = [[JSTopTabBarController alloc]
                                                   initWithViewControllers:@[viewController1, viewController3, navController1, navController2]];
     
-    [topTabBarController setTitles:@[@"Normal", @"Notifications", @"Navigation Controller", @"Table + Nav ViewController"]];
+    [topTabBarController setButtonTitles:@[@"Normal", @"Notifications", @"Navigation Controller", @"Table + Nav ViewController"]];
     [topTabBarController setBadgedTabIndex:1];
     [topTabBarController setBadgeNumber:3];
     [topTabBarController setActiveViewController:navController2];
