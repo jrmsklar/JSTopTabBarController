@@ -554,7 +554,7 @@ static const char* topTabBarKey = "TopTabBarKey";
     }
     else {
         [badgeLabel setHidden:NO];
-        [badgeLabel setText:[NSString stringWithFormat:@"%i", badgeNumber]];
+        [badgeLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)badgeNumber]];
     }
 }
 
