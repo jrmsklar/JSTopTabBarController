@@ -64,7 +64,6 @@
                       action:@selector(didTapTogglePanning:)
             forControlEvents:UIControlEventTouchUpInside];
     
-    
     for (UIButton *b in @[toggle, toggleBorders, toggleShadow, togglePanning]) {
         [b setTitleColor:[UIColor blueColor]
                      forState:UIControlStateNormal];
