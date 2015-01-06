@@ -42,12 +42,15 @@
 
 /*
  Optional. If not called, there will be no images.
- Otherwise, called with the names of the image, as found in the main bundle,
- in order with respect to the viewControllers used in init.
  
- Throws exception if the size of titles is not the same as the number of viewControllers
+ Sets the images of the tab bar buttons.
+ 
+ @images - NSArray of UIImages, ordered with respect to the
+ viewControllers used in init.
+ 
+ Throws exception if the size of @c images is not the same as the number of viewControllers
  */
-- (void)setImages:(NSArray*)imageNames;
+- (void)setButtonImages:(NSArray *)images;
 
 /*
  Optional. If not called, the background will be gray.

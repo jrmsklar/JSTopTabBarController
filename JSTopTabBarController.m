@@ -159,12 +159,12 @@ typedef enum {
     }
 }
 
-- (void)setImages:(NSArray*)imageNames
+- (void)setButtonImages:(NSArray *)images
 {
-    NSAssert(imageNames.count == self.topTabBarButtons.count, @"Number of titles was not equal to the number of top tab bar buttons");
+    NSAssert(images.count == self.topTabBarButtons.count, @"Number of titles was not equal to the number of top tab bar buttons");
     
-    for (JSTopTabBarButton *b in self.topTabBarButtons) {
-        [b setImage:[UIImage imageNamed:[imageNames objectAtIndex:b.tag]]];
+    for (JSTopTabBarButton *button in self.topTabBarButtons) {
+        [button setImage:[images objectAtIndex:button.tag]];
     }
 }
 
