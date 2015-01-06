@@ -550,20 +550,11 @@ static const char* topTabBarKey = "TopTabBarKey";
         badgeLabel.layer.cornerRadius = 5.;
         [badgeLabel setHidden:YES];
         
-        static const CGFloat dotSize = 20.;
-        
-        activeDotImageView = [[UIImageView alloc]initWithFrame:CGRectMake((frame.size.width - dotSize)/2, frame.size.height - dotSize, dotSize, dotSize)];
-        [activeDotImageView setImage:[UIImage imageNamed:@"active-dot"]];
-        [activeDotImageView setHidden:YES];
-        [self addSubview:activeDotImageView];
-        [self sendSubviewToBack:activeDotImageView];
-        
         static const CGFloat kBackgroundImageSize = 50.;
         
         backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake((frame.size.width - kBackgroundImageSize)/2, 0, kBackgroundImageSize, kBackgroundImageSize)];
         [self addSubview:backgroundImageView];
         [self sendSubviewToBack:backgroundImageView];
-        // TODO: Maybe remove this (the activeDot)
         
     }
     return self;
@@ -592,7 +583,6 @@ static const char* topTabBarKey = "TopTabBarKey";
 
 - (void)setActive:(BOOL)active
 {
-    [activeDotImageView setHidden:!active];
     if (!active) {
         [jsTitleLabel setTextColor:[UIColor whiteColor]];
         [jsTitleLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:11]];

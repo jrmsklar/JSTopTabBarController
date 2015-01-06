@@ -166,7 +166,6 @@
 @private
     UILabel *jsTitleLabel;
     UILabel *badgeLabel;
-    UIImageView *activeDotImageView;
     UIImageView *backgroundImageView;
 }
 
