@@ -19,6 +19,10 @@
 		038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */; };
 		03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A23489187905B600F5D68F /* JSTopTabBarController.m */; };
 		03BC8EF81A5B3348002FE0D9 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03BC8EF71A5B3348002FE0D9 /* Launch Screen.xib */; };
+		03E02AF51A5B4A8800F3AE7C /* navigation1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */; };
+		03E02AF71A5B4A8D00F3AE7C /* navigation2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */; };
+		03E02AF91A5B4AAD00F3AE7C /* notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */; };
+		03E02AFB1A5B4ABE00F3AE7C /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */; };
 		03FF7D7F1742B99A00FBBADA /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D7E1742B99A00FBBADA /* TableViewController.m */; };
 		03FF7D811742BBDE00FBBADA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF7D801742BBDE00FBBADA /* QuartzCore.framework */; };
 		03FF7D841742C22000FBBADA /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D831742C22000FBBADA /* ViewController1.m */; };
@@ -44,6 +48,10 @@
 		03A23488187905B600F5D68F /* JSTopTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTopTabBarController.h; sourceTree = SOURCE_ROOT; };
 		03A23489187905B600F5D68F /* JSTopTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTopTabBarController.m; sourceTree = SOURCE_ROOT; };
 		03BC8EF71A5B3348002FE0D9 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation1@2x.png"; sourceTree = "<group>"; };
+		03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation2@2x.png"; sourceTree = "<group>"; };
+		03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifications@2x.png"; sourceTree = "<group>"; };
+		03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		03FF7D7D1742B99A00FBBADA /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		03FF7D7E1742B99A00FBBADA /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		03FF7D801742BBDE00FBBADA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -119,6 +127,10 @@
 		030F92001742AD5000755F75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */,
+				03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */,
+				03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */,
+				03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */,
 				038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */,
 				0362A6FD179827F9005140EF /* active-dot@2x.png */,
 				030F92011742AD5000755F75 /* JSTopTabBar-Info.plist */,
@@ -183,10 +195,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E02AF51A5B4A8800F3AE7C /* navigation1@2x.png in Resources */,
 				030F92041742AD5000755F75 /* InfoPlist.strings in Resources */,
 				030F920C1742AD5000755F75 /* Default.png in Resources */,
 				0362A6FE179827F9005140EF /* active-dot@2x.png in Resources */,
 				038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */,
+				03E02AFB1A5B4ABE00F3AE7C /* home@2x.png in Resources */,
+				03E02AF71A5B4A8D00F3AE7C /* navigation2@2x.png in Resources */,
+				03E02AF91A5B4AAD00F3AE7C /* notifications@2x.png in Resources */,
 				03BC8EF81A5B3348002FE0D9 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
