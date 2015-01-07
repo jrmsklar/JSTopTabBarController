@@ -229,6 +229,17 @@ typedef enum {
     return self;
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    NSInteger buttonWidth = size.width / self.viewControllers.count;
+    
+    self.topTabBarButtonWidthConstraint.constant = buttonWidth;
+    
+    [self.view layoutIfNeeded];
+}
+
 - (void)performToggleTopTabBar
 {
     [self didTapToggleTopTabBar:nil];
