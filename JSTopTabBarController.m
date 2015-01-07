@@ -176,12 +176,14 @@ typedef enum {
                 [views setObject:nextButton
                           forKey:nextButtonKey];
                 
-                // Align the next button to the top, and next to the previous button
-                verticalVisualFormatString = [NSString stringWithFormat:@"V:|[%@]", nextButtonKey];
-                [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalVisualFormatString
-                                                                                  options:kNilOptions
-                                                                                  metrics:nil
-                                                                                    views:views]];
+                // Align the next button to the top of the first button, and next to the previous button
+                [self.view addConstraint:[NSLayoutConstraint constraintWithItem:nextButton
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:firstButton
+                                                                     attribute:NSLayoutAttributeTop
+                                                                    multiplier:1.
+                                                                       constant:0.]];
                 horizontalVisualFormatString = [NSString stringWithFormat:@"H:[%@]-0-[%@]", previousButtonKey, nextButtonKey];
                 [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horizontalVisualFormatString
                                                                                  options:kNilOptions
