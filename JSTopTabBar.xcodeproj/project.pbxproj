@@ -16,6 +16,8 @@
 		030F92061742AD5000755F75 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 030F92051742AD5000755F75 /* main.m */; };
 		030F920A1742AD5000755F75 /* JSTTBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 030F92091742AD5000755F75 /* JSTTBAppDelegate.m */; };
 		030F920C1742AD5000755F75 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 030F920B1742AD5000755F75 /* Default.png */; };
+		03239BBD1A5CDFCA00E6C780 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03239BBB1A5CDFCA00E6C780 /* ViewController2.m */; };
+		03239BBE1A5CDFCA00E6C780 /* ViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03239BBC1A5CDFCA00E6C780 /* ViewController2.xib */; };
 		0362A6FC1798278E005140EF /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362A6FB1798278E005140EF /* ViewController3.m */; };
 		038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */; };
 		03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A23489187905B600F5D68F /* JSTopTabBarController.m */; };
@@ -26,7 +28,6 @@
 		03E02AFB1A5B4ABE00F3AE7C /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */; };
 		03FF7D7F1742B99A00FBBADA /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D7E1742B99A00FBBADA /* TableViewController.m */; };
 		03FF7D811742BBDE00FBBADA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF7D801742BBDE00FBBADA /* QuartzCore.framework */; };
-		03FF7D871742C28900FBBADA /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FF7D861742C28900FBBADA /* ViewController2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,9 @@
 		030F92081742AD5000755F75 /* JSTTBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSTTBAppDelegate.h; sourceTree = "<group>"; };
 		030F92091742AD5000755F75 /* JSTTBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSTTBAppDelegate.m; sourceTree = "<group>"; };
 		030F920B1742AD5000755F75 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		03239BBA1A5CDFCA00E6C780 /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		03239BBB1A5CDFCA00E6C780 /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
+		03239BBC1A5CDFCA00E6C780 /* ViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController2.xib; sourceTree = "<group>"; };
 		0362A6FA1798278E005140EF /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
 		0362A6FB1798278E005140EF /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
 		038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-toptabbar@2x.png"; sourceTree = "<group>"; };
@@ -57,8 +61,6 @@
 		03FF7D7D1742B99A00FBBADA /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		03FF7D7E1742B99A00FBBADA /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		03FF7D801742BBDE00FBBADA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		03FF7D851742C28900FBBADA /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
-		03FF7D861742C28900FBBADA /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +116,9 @@
 				030B93151A5BC05600F9A068 /* ViewController1.h */,
 				030B93161A5BC05600F9A068 /* ViewController1.m */,
 				030B93171A5BC05600F9A068 /* ViewController1.xib */,
-				03FF7D851742C28900FBBADA /* ViewController2.h */,
-				03FF7D861742C28900FBBADA /* ViewController2.m */,
+				03239BBA1A5CDFCA00E6C780 /* ViewController2.h */,
+				03239BBB1A5CDFCA00E6C780 /* ViewController2.m */,
+				03239BBC1A5CDFCA00E6C780 /* ViewController2.xib */,
 				0362A6FA1798278E005140EF /* ViewController3.h */,
 				0362A6FB1798278E005140EF /* ViewController3.m */,
 				03FF7D7D1742B99A00FBBADA /* TableViewController.h */,
@@ -200,6 +203,7 @@
 				030F920C1742AD5000755F75 /* Default.png in Resources */,
 				038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */,
 				03E02AFB1A5B4ABE00F3AE7C /* home@2x.png in Resources */,
+				03239BBE1A5CDFCA00E6C780 /* ViewController2.xib in Resources */,
 				030B93191A5BC05600F9A068 /* ViewController1.xib in Resources */,
 				03E02AF71A5B4A8D00F3AE7C /* navigation2@2x.png in Resources */,
 				03E02AF91A5B4AAD00F3AE7C /* notifications@2x.png in Resources */,
@@ -214,12 +218,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03239BBD1A5CDFCA00E6C780 /* ViewController2.m in Sources */,
 				030F92061742AD5000755F75 /* main.m in Sources */,
 				030B93181A5BC05600F9A068 /* ViewController1.m in Sources */,
 				03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */,
 				030F920A1742AD5000755F75 /* JSTTBAppDelegate.m in Sources */,
 				03FF7D7F1742B99A00FBBADA /* TableViewController.m in Sources */,
-				03FF7D871742C28900FBBADA /* ViewController2.m in Sources */,
 				0362A6FC1798278E005140EF /* ViewController3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
