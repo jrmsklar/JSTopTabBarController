@@ -115,8 +115,7 @@
 			children = (
 				030F92081742AD5000755F75 /* JSTTBAppDelegate.h */,
 				030F92091742AD5000755F75 /* JSTTBAppDelegate.m */,
-				03A23488187905B600F5D68F /* JSTopTabBarController.h */,
-				03A23489187905B600F5D68F /* JSTopTabBarController.m */,
+				03239BCE1A5CE1C200E6C780 /* JSTopTabBarController */,
 				030B93151A5BC05600F9A068 /* ViewController1.h */,
 				030B93161A5BC05600F9A068 /* ViewController1.m */,
 				030B93171A5BC05600F9A068 /* ViewController1.xib */,
@@ -150,6 +149,15 @@
 				03BC8EF71A5B3348002FE0D9 /* Launch Screen.xib */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03239BCE1A5CE1C200E6C780 /* JSTopTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				03A23488187905B600F5D68F /* JSTopTabBarController.h */,
+				03A23489187905B600F5D68F /* JSTopTabBarController.m */,
+			);
+			name = JSTopTabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
