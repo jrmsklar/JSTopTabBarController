@@ -8,10 +8,6 @@
 
 #import "JSTTBNotificationsViewController.h"
 
-@interface JSTTBNotificationsViewController ()
-
-@end
-
 @implementation JSTTBNotificationsViewController
 
 @end

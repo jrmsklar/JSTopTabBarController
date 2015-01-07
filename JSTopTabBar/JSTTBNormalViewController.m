@@ -9,10 +9,6 @@
 #import "JSTTBNormalViewController.h"
 #import "JSTopTabBarController.h"
 
-@interface JSTTBNormalViewController ()
-
-@end
-
 @implementation JSTTBNormalViewController
 
 #pragma mark - Internal methods

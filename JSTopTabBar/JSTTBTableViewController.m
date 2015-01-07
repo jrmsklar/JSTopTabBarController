@@ -7,9 +7,6 @@
 //
 
 #import "JSTTBTableViewController.h"
-@interface JSTTBTableViewController ()
-
-@end
 #import "JSTTBNavigationViewController.h"
 
 @implementation JSTTBTableViewController
