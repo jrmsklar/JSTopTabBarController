@@ -43,6 +43,15 @@ This is a screenshot from a more complete use of `JSTopTabBarController`.
 
 ![screenshot1](/screenshot1.png)
 
+## Credits
+
+Credits to the [NounProject](http://thenounproject.com), and all designers who created the icons used in this demo:
+
+- Mike Rowe
+- Rediffusion
+- Christopher Holm-Hansen
+- Edward Boatman
+
 ## License
 
 Usage is provided under the [MIT License](http://opensource.org/licenses/mit-license.php). See LICENSE for the full details.
