@@ -12,9 +12,6 @@
 
 static const CGFloat kTabBarHeight = 90.;
 
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 typedef enum {
@@ -526,6 +523,8 @@ typedef enum {
     UIPanGestureRecognizer *recognizer = (UIPanGestureRecognizer*)sender;
     
     CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat screenWidth = CGRectGetWidth([UIScreen mainScreen].bounds);
+    CGFloat screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
     
     if (recognizer.state == UIGestureRecognizerStateChanged) {
         
@@ -542,10 +541,10 @@ typedef enum {
         if (newButtonFrame.origin.y <= self.mainViewController.view.frame.origin.y)
             newButtonFrame.origin.y = self.mainViewController.view.frame.origin.y;
         
-        if (newButtonFrame.origin.x + newButtonFrame.size.width >= kScreenWidth)
-            newButtonFrame.origin.x = kScreenWidth - newButtonFrame.size.width;
-        if (newButtonFrame.origin.y + newButtonFrame.size.height >= kScreenHeight - statusBarHeight)
-            newButtonFrame.origin.y = kScreenHeight - newButtonFrame.size.height - statusBarHeight;
+        if (newButtonFrame.origin.x + newButtonFrame.size.width >= screenWidth)
+            newButtonFrame.origin.x = screenWidth - newButtonFrame.size.width;
+        if (newButtonFrame.origin.y + newButtonFrame.size.height >= screenHeight - statusBarHeight)
+            newButtonFrame.origin.y = screenHeight - newButtonFrame.size.height - statusBarHeight;
         
         draggedButton.frame = newButtonFrame;
         
