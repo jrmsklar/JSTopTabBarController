@@ -61,6 +61,12 @@ typedef enum {
 
 @property NSUInteger indexOfBadgedTab;
 
+/**
+ Width constraint for the first top tab bar button. All of the other buttons
+ have equal width.
+ */
+@property (strong, nonatomic) NSLayoutConstraint *topTabBarButtonWidthConstraint;
+
 @end
 
 @implementation JSTopTabBarController
