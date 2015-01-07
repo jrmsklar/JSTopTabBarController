@@ -549,13 +549,6 @@ static const char* topTabBarKey = "TopTabBarKey";
         badgeLabel.textAlignment = NSTextAlignmentCenter;
         badgeLabel.layer.cornerRadius = 5.;
         [badgeLabel setHidden:YES];
-        
-        static const CGFloat kBackgroundImageSize = 50.;
-        
-        backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake((frame.size.width - kBackgroundImageSize)/2, 0, kBackgroundImageSize, kBackgroundImageSize)];
-        [self addSubview:backgroundImageView];
-        [self sendSubviewToBack:backgroundImageView];
-        
     }
     return self;
 }
