@@ -164,12 +164,6 @@
 
 // TODO: remove the insance variables
 @interface JSTopTabBarButton : UIButton
-{
-@private
-    UILabel *jsTitleLabel;
-    UILabel *badgeLabel;
-    UIImageView *backgroundImageView;
-}
 
 - (void)setTitle:(NSString *)title;
 - (void)setImage:(UIImage *)image;

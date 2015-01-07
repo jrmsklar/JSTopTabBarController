@@ -627,6 +627,14 @@ static const char* topTabBarKey = "TopTabBarKey";
 
 @end
 
+@interface JSTopTabBarButton ()
+
+@property (strong, nonatomic) UILabel *jsTitleLabel;
+@property (strong, nonatomic) UILabel *badgeLabel;
+@property (strong, nonatomic) UIImageView *backgroundImageView;
+
+@end
+
 @implementation JSTopTabBarButton
 
 - (id)init
@@ -636,34 +644,34 @@ static const char* topTabBarKey = "TopTabBarKey";
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1.;
     
-        jsTitleLabel = [[UILabel alloc]init];
-        jsTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:jsTitleLabel];
+        self.jsTitleLabel = [[UILabel alloc]init];
+        self.jsTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.jsTitleLabel];
         
-        badgeLabel = [[UILabel alloc]init];
-        badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:badgeLabel];
+        self.badgeLabel = [[UILabel alloc]init];
+        self.badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:self.badgeLabel];
         
-        backgroundImageView = [[UIImageView alloc]init];
-        backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
-        backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self addSubview:backgroundImageView];
-        [self sendSubviewToBack:backgroundImageView];
+        self.backgroundImageView = [[UIImageView alloc]init];
+        self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:self.backgroundImageView];
+        [self sendSubviewToBack:self.backgroundImageView];
         
-        NSDictionary *views = NSDictionaryOfVariableBindings(jsTitleLabel, badgeLabel, backgroundImageView);
+        NSDictionary *views = NSDictionaryOfVariableBindings(_jsTitleLabel, _badgeLabel, _backgroundImageView);
         
         // Add constraints for the titleLabel
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[jsTitleLabel]|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_jsTitleLabel]|"
                                                                      options:kNilOptions
                                                                      metrics:nil
                                                                        views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[jsTitleLabel]|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_jsTitleLabel]|"
                                                                      options:kNilOptions
                                                                      metrics:nil
                                                                        views:views]];
         
         // Add constraints for the backgroundImageView
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:backgroundImageView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView
                                                          attribute:NSLayoutAttributeCenterX
                                                          relatedBy:NSLayoutRelationEqual
                                                             toItem:self
@@ -671,69 +679,69 @@ static const char* topTabBarKey = "TopTabBarKey";
                                                         multiplier:1.
                                                           constant:0.]];
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[backgroundImageView]-[jsTitleLabel]"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_backgroundImageView]-[_jsTitleLabel]"
                                                                      options:kNilOptions
                                                                      metrics:nil
                                                                        views:views]];
-        [jsTitleLabel setFont:[UIFont systemFontOfSize:11]];
-        [jsTitleLabel setNumberOfLines:0];
-        [jsTitleLabel setTextColor:[UIColor whiteColor]];
-        [jsTitleLabel setBackgroundColor:[UIColor clearColor]];
-        [jsTitleLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.jsTitleLabel setFont:[UIFont systemFontOfSize:11]];
+        [self.jsTitleLabel setNumberOfLines:0];
+        [self.jsTitleLabel setTextColor:[UIColor whiteColor]];
+        [self.jsTitleLabel setBackgroundColor:[UIColor clearColor]];
+        [self.jsTitleLabel setTextAlignment:NSTextAlignmentCenter];
         
         NSDictionary *metrics = @{@"badgeLabelSize": @20};
         
         // Add constraints for the badgeLabel
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[badgeLabel(badgeLabelSize)]"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_badgeLabel(badgeLabelSize)]"
                                                                     options:kNilOptions
                                                                     metrics:metrics
                                                                        views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[badgeLabel(badgeLabelSize)]"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_badgeLabel(badgeLabelSize)]"
                                                                     options:kNilOptions
                                                                     metrics:metrics
                                                                        views:views]];
         
         
-        badgeLabel.backgroundColor = [UIColor redColor];
-        [badgeLabel setFont:[UIFont boldSystemFontOfSize:11]];
-        badgeLabel.textColor = [UIColor whiteColor];
-        badgeLabel.textAlignment = NSTextAlignmentCenter;
-        badgeLabel.layer.cornerRadius = 5.;
-        [badgeLabel setHidden:YES];
+        self.badgeLabel.backgroundColor = [UIColor redColor];
+        [self.badgeLabel setFont:[UIFont boldSystemFontOfSize:11]];
+        self.badgeLabel.textColor = [UIColor whiteColor];
+        self.badgeLabel.textAlignment = NSTextAlignmentCenter;
+        self.badgeLabel.layer.cornerRadius = 5.;
+        [self.badgeLabel setHidden:YES];
     }
     return self;
 }
 
 - (void)setTitle:(NSString *)title
 {
-    [jsTitleLabel setText:title];
+    [self.jsTitleLabel setText:title];
 }
 
 - (void)setImage:(UIImage *)image
 {
-    [backgroundImageView setImage:image];
+    [self.backgroundImageView setImage:image];
 }
 
 - (void)setBadgeNumber:(NSUInteger)badgeNumber
 {
     if (badgeNumber == 0) {
-        [badgeLabel setHidden:YES];
+        [self.badgeLabel setHidden:YES];
     }
     else {
-        [badgeLabel setHidden:NO];
-        [badgeLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)badgeNumber]];
+        [self.badgeLabel setHidden:NO];
+        [self.badgeLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)badgeNumber]];
     }
 }
 
 - (void)setActive:(BOOL)active
 {
     if (!active) {
-        [jsTitleLabel setTextColor:[UIColor whiteColor]];
-        [jsTitleLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:11]];
+        [self.jsTitleLabel setTextColor:[UIColor whiteColor]];
+        [self.jsTitleLabel setFont:[UIFont fontWithName:@"Helvetica-Light" size:11]];
     }
     else {
-        [jsTitleLabel setTextColor:[UIColor blueColor]];
-        [jsTitleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:10]];
+        [self.jsTitleLabel setTextColor:[UIColor blueColor]];
+        [self.jsTitleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:10]];
     }
 }
 
