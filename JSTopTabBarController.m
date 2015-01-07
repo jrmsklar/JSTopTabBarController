@@ -347,7 +347,6 @@ typedef enum {
     self.indexOfBadgedTab = index;
 }
 
-
 - (void)setBadgeNumber:(NSUInteger)badgeNum
 {
     NSAssert(self.indexOfBadgedTab != -1, @"indexOfBadgedTab was not yet set");
