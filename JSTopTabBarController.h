@@ -169,7 +169,6 @@
     UIImageView *backgroundImageView;
 }
 
-- (id)initWithFrame:(CGRect)frame;
 - (void)setTitle:(NSString *)title;
 - (void)setImage:(UIImage *)image;
 - (void)setBadgeNumber:(NSUInteger)badgeNumber;

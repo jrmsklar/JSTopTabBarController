@@ -93,14 +93,14 @@ typedef enum {
             [vc setTopTabBar:self];
             vc.view.frame = self.view.bounds;
             
-            // TODO: Ues AutoLayout
-            JSTopTabBarButton *b = [[JSTopTabBarButton alloc]initWithFrame:CGRectMake(xPos, 0, btnWidth, kTabBarHeight)];
-            [b setTitle:[NSString stringWithFormat:@"%li", (long)i]];
-            b.tag = i;
-            [b addTarget:self action:@selector(didTapTopTabBarButton:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:b];
+            JSTopTabBarButton *button = [[JSTopTabBarButton alloc]init];
+            button.translatesAutoresizingMaskIntoConstraints = NO;
+            [button setTitle:[NSString stringWithFormat:@"%li", (long)i]];
+            button.tag = i;
+            [button addTarget:self action:@selector(didTapTopTabBarButton:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:button];
             
-            [self.topTabBarButtons addObject:b];
+            [self.topTabBarButtons addObject:button];
             
             xPos += btnWidth;
             i++;
@@ -478,9 +478,9 @@ static const char* topTabBarKey = "TopTabBarKey";
 
 @implementation JSTopTabBarButton
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    if (self = [super initWithFrame:frame]) {
+    if (self = [super init]) {
         // configure border
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 1.;
