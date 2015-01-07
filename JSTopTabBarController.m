@@ -83,7 +83,7 @@ typedef enum {
         NSInteger numVCs = self.viewControllers.count;
         
         NSInteger xPos = 0;
-        NSInteger btnWidth = self.view.frame.size.width / numVCs;
+        CGFloat btnWidth = self.view.frame.size.width / numVCs;
         
         NSInteger i = 0;
         
@@ -105,6 +105,86 @@ typedef enum {
             xPos += btnWidth;
             i++;
         }
+        
+        // Constrain the first button
+        if (self.topTabBarButtons.count > 0) {
+            JSTopTabBarButton *firstButton = [self.topTabBarButtons firstObject];
+            NSString *firstButtonKey = @"button0";
+            NSMutableDictionary *views = [@{firstButtonKey: firstButton} mutableCopy];
+            NSDictionary *metrics = @{@"buttonWidth": @(btnWidth), @"buttonHeight": @(kTabBarHeight)};
+            
+            NSString *verticalVisualFormatString =
+            [NSString stringWithFormat:@"V:|[%@(buttonHeight)]", firstButtonKey];
+            [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalVisualFormatString
+                                                                              options:kNilOptions
+                                                                              metrics:metrics
+                                                                                views:views]];
+            
+            NSString *horizontalVisualFormatString =
+            [NSString stringWithFormat:@"H:|[%@]", firstButtonKey];
+            [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horizontalVisualFormatString
+                                                                              options:kNilOptions
+                                                                              metrics:metrics
+                                                                                views:views]];
+            
+            self.topTabBarButtonWidthConstraint = [NSLayoutConstraint constraintWithItem:firstButton
+                                                                               attribute:NSLayoutAttributeWidth
+                                                                               relatedBy:NSLayoutRelationEqual
+                                                                                  toItem:nil
+                                                                               attribute:NSLayoutAttributeNotAnAttribute
+                                                                              multiplier:1.
+                                                                                constant:btnWidth];
+            
+            [self.view addConstraint:self.topTabBarButtonWidthConstraint];
+            
+            [self.view setNeedsLayout];
+            
+            JSTopTabBarButton *previousButton = firstButton;
+            NSString *previousButtonKey = firstButtonKey;
+            [views setObject:previousButton
+                      forKey:previousButtonKey];
+            
+            for (NSInteger index = 1; index < self.topTabBarButtons.count; index++) {
+                JSTopTabBarButton *nextButton = [self.topTabBarButtons objectAtIndex:index];
+
+                // Assign equal height and width of every button to the first button
+                [self.view addConstraint:[NSLayoutConstraint constraintWithItem:nextButton
+                                                                     attribute:NSLayoutAttributeHeight
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:firstButton
+                                                                     attribute:NSLayoutAttributeHeight
+                                                                    multiplier:1.
+                                                                       constant:0.]];
+                
+                [self.view addConstraint:[NSLayoutConstraint constraintWithItem:nextButton
+                                                                      attribute:NSLayoutAttributeWidth
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:firstButton
+                                                                      attribute:NSLayoutAttributeWidth
+                                                                     multiplier:1.
+                                                                       constant:0.]];
+                
+                NSString *nextButtonKey = [NSString stringWithFormat:@"button%li", (long)index];
+                [views setObject:nextButton
+                          forKey:nextButtonKey];
+                
+                // Align the next button to the top, and next to the previous button
+                verticalVisualFormatString = [NSString stringWithFormat:@"V:|[%@]", nextButtonKey];
+                [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalVisualFormatString
+                                                                                  options:kNilOptions
+                                                                                  metrics:nil
+                                                                                    views:views]];
+                horizontalVisualFormatString = [NSString stringWithFormat:@"H:[%@]-0-[%@]", previousButtonKey, nextButtonKey];
+                [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horizontalVisualFormatString
+                                                                                 options:kNilOptions
+                                                                                 metrics:nil
+                                                                                    views:views]];
+                previousButton = nextButton;
+                previousButtonKey = nextButtonKey;
+            }
+        }
+        
+        [self.view layoutIfNeeded];
         
         [[self.topTabBarButtons objectAtIndex:0] setActive:YES];
         
