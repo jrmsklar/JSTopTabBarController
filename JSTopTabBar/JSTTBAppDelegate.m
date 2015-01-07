@@ -9,7 +9,7 @@
 #import "JSTTBAppDelegate.h"
 #import "JSTopTabBarController.h"
 
-#import "ViewController1.h"
+#import "JSTTBNormalViewController.h"
 #import "ViewController2.h"
 #import "JSTTBNotificationsViewController.h"
 #import "JSTTBTableViewController.h"
@@ -20,7 +20,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    ViewController1 *viewController1 = [[ViewController1 alloc] init];
+    JSTTBNormalViewController *normalViewController = [[JSTTBNormalViewController alloc] init];
     ViewController2 *viewController2 = [[ViewController2 alloc] init];
     JSTTBNotificationsViewController *notificationsViewController = [[JSTTBNotificationsViewController alloc]init];
     JSTTBTableViewController *tableViewController = [[JSTTBTableViewController alloc]init];
@@ -29,7 +29,7 @@
     UINavigationController *navController2 = [[UINavigationController alloc]initWithRootViewController:tableViewController];
     
     JSTopTabBarController *topTabBarController = [[JSTopTabBarController alloc]
-                                                  initWithViewControllers:@[viewController1, notificationsViewController, navController1, navController2]];
+                                                  initWithViewControllers:@[normalViewController, notificationsViewController, navController1, navController2]];
     [topTabBarController setButtonImages:@[[UIImage imageNamed:@"home"],
                                           [UIImage imageNamed:@"notifications"],
                                           [UIImage imageNamed:@"navigation2"],

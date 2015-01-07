@@ -1,5 +1,5 @@
 //
-//  ViewController1.h
+//  JSTTBNormalViewController.h
 //  JSTopTabBar
 //
 //  Created by Josh Sklar on 1/6/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController1 : UIViewController
+@interface JSTTBNormalViewController : UIViewController
 
 @end

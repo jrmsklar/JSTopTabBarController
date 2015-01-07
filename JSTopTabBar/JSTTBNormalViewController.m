@@ -1,19 +1,19 @@
 //
-//  ViewController1.m
+//  JSTTBNormalViewController.m
 //  JSTopTabBar
 //
 //  Created by Josh Sklar on 1/6/15.
 //  Copyright (c) 2015 Josh Sklar. All rights reserved.
 //
 
-#import "ViewController1.h"
+#import "JSTTBNormalViewController.h"
 #import "JSTopTabBarController.h"
 
-@interface ViewController1 ()
+@interface JSTTBNormalViewController ()
 
 @end
 
-@implementation ViewController1
+@implementation JSTTBNormalViewController
 
 #pragma mark - Internal methods
 
