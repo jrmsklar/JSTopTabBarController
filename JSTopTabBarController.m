@@ -79,10 +79,22 @@ typedef enum {
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
         
-        self.backgroundImageView = [[UIImageView alloc]
-                                    initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), kTabBarHeight)];
+        self.backgroundImageView = [[UIImageView alloc]init];
+        self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.backgroundImageView setImage:nil];
         [self.view addSubview:self.backgroundImageView];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(_backgroundImageView);
+        NSDictionary *metrics = @{@"backgroundImageViewHeight": @(kTabBarHeight)};
+        
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_backgroundImageView(backgroundImageViewHeight)]"
+                                                                         options:kNilOptions
+                                                                         metrics:metrics
+                                                                            views:views]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_backgroundImageView]|"
+                                                                         options:kNilOptions
+                                                                         metrics:nil
+                                                                            views:views]];
         
         self.viewControllers = viewControllers;
         
