@@ -25,10 +25,6 @@ typedef enum {
 } JSTTBMoveDirection;
 
 @interface JSTopTabBarController ()
-{
-@private
-    JSTTBTopTabBarPosition topTabBarPosition;
-}
 
 /* private methods */
 - (void)constrainViewToEntireSuperview:(UIView *)view;
@@ -39,6 +35,8 @@ typedef enum {
 - (void)partialFade:(UIView*)view finalAlpha:(CGFloat)alpha withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block;
 - (void)didPanToggleTopBarButton:(id)sender;
 - (void)didTapOverlay:(id)sender;
+
+@property (nonatomic) JSTTBTopTabBarPosition topTabBarPosition;
 
 /* Array of all of the buttons contained in the JSTopTabBar */
 @property (strong, nonatomic) NSMutableArray *topTabBarButtons;
@@ -253,7 +251,7 @@ typedef enum {
         
         [self.toggleTopTabBar addGestureRecognizer:self.panGestureRecognizer];
         
-        topTabBarPosition = JSTTBTopTabBarNotExposed;
+        self.topTabBarPosition = JSTTBTopTabBarNotExposed;
         
         self.indexOfBadgedTab = -1;
     }
@@ -430,12 +428,12 @@ typedef enum {
     
     CGFloat moveAmount = kTabBarHeight + statusBarHeight;
     
-    switch (topTabBarPosition) {
+    switch (self.topTabBarPosition) {
         case JSTTBTopTabBarNotExposed:
             /* move the main view controller and the toggle button down */
             [self move:self.mainViewController.view direction:JSTTBMoveDirectionDown by:moveAmount withDuration:animationDuration completionBlock:nil];
             [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionDown by:moveAmount withDuration:animationDuration completionBlock:nil];
-            topTabBarPosition = JSTTBTopTabBarExposed;
+            self.topTabBarPosition = JSTTBTopTabBarExposed;
             [self.mainViewController.view bringSubviewToFront:self.overlay];
             [self partialFade:self.overlay finalAlpha:0.7 withDuration:animationDuration completionBlock:nil];
             break;
@@ -443,7 +441,7 @@ typedef enum {
             /* move the main view controller and the toggle button up */
             [self move:self.mainViewController.view direction:JSTTBMoveDirectionUp by:moveAmount withDuration:animationDuration completionBlock:nil];
             [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionUp by:moveAmount withDuration:animationDuration completionBlock:nil];
-            topTabBarPosition = JSTTBTopTabBarNotExposed;
+            self.topTabBarPosition = JSTTBTopTabBarNotExposed;
             [self partialFade:self.overlay finalAlpha:0. withDuration:animationDuration completionBlock:nil];
             break;
     }
