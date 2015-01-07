@@ -229,7 +229,8 @@ typedef enum {
         [self.view addSubview:self.toggleTopTabBar];
         [self.view bringSubviewToFront:self.toggleTopTabBar];
         
-        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didPanToggleTopBarButton:)];
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
+                                                                           action:@selector(didPanToggleTopBarButton:)];
         
         [self.toggleTopTabBar addGestureRecognizer:self.panGestureRecognizer];
         
