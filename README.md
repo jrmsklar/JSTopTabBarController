@@ -7,6 +7,8 @@ JSTopTabBarController
 
 You may provide as many different `UIViewControllers` as you'd like, and  `JSTopTabBarController` sizes and scales the tab-buttons proportionally. Each tab also has the option to be given a badge number.
 
+`JSTopTabBarController` uses AutoLayout and supports both portrait and landscape.
+
 ## Usage
 
 Drag `JSTopTabBarController.h` and `JSTopTabBarController.m` into your project and add the following code.

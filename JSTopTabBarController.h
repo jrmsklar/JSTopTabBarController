@@ -16,6 +16,8 @@
  @brief JSTopTabBarController is a generic controller class
  that manages other view controllers. It can be used
  similarly to a UITabBarController, and acts similarly.
+ 
+ Uses AutoLayout, and thus supports both landscape and portrait.
  */
 
 @interface JSTopTabBarController : UIViewController
