@@ -100,12 +100,10 @@ typedef enum {
         
         self.mainViewController = [self.viewControllers objectAtIndex:0];
         
-        NSInteger numVCs = self.viewControllers.count;
+        NSInteger xPosition = 0;
+        CGFloat buttonWidth = CGRectGetWidth(self.view.frame) / self.viewControllers.count;
         
-        NSInteger xPos = 0;
-        CGFloat btnWidth = self.view.frame.size.width / numVCs;
-        
-        NSInteger i = 0;
+        NSInteger buttonTag = 0;
         
         self.topTabBarButtons = [[NSMutableArray alloc]initWithCapacity:viewControllers.count];
         
@@ -115,15 +113,15 @@ typedef enum {
             
             JSTopTabBarButton *button = [[JSTopTabBarButton alloc]init];
             button.translatesAutoresizingMaskIntoConstraints = NO;
-            [button setTitle:[NSString stringWithFormat:@"%li", (long)i]];
-            button.tag = i;
+            [button setTitle:[NSString stringWithFormat:@"%li", (long)buttonTag]];
+            button.tag = buttonTag;
             [button addTarget:self action:@selector(didTapTopTabBarButton:) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:button];
             
             [self.topTabBarButtons addObject:button];
             
-            xPos += btnWidth;
-            i++;
+            xPosition += buttonWidth;
+            buttonTag++;
         }
         
         CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -167,7 +165,7 @@ typedef enum {
                                                                                   toItem:nil
                                                                                attribute:NSLayoutAttributeNotAnAttribute
                                                                               multiplier:1.
-                                                                                constant:btnWidth];
+                                                                                constant:buttonWidth];
             
             [self.view addConstraint:self.topTabBarButtonWidthConstraint];
             
