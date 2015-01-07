@@ -18,7 +18,8 @@
 		030F920C1742AD5000755F75 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 030F920B1742AD5000755F75 /* Default.png */; };
 		03239BBD1A5CDFCA00E6C780 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03239BBB1A5CDFCA00E6C780 /* ViewController2.m */; };
 		03239BBE1A5CDFCA00E6C780 /* ViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03239BBC1A5CDFCA00E6C780 /* ViewController2.xib */; };
-		0362A6FC1798278E005140EF /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 0362A6FB1798278E005140EF /* ViewController3.m */; };
+		03239BC21A5CE02D00E6C780 /* JSTTBNotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03239BC01A5CE02D00E6C780 /* JSTTBNotificationsViewController.m */; };
+		03239BC31A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03239BC11A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib */; };
 		038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */; };
 		03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A23489187905B600F5D68F /* JSTopTabBarController.m */; };
 		03BC8EF81A5B3348002FE0D9 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03BC8EF71A5B3348002FE0D9 /* Launch Screen.xib */; };
@@ -48,8 +49,9 @@
 		03239BBA1A5CDFCA00E6C780 /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
 		03239BBB1A5CDFCA00E6C780 /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		03239BBC1A5CDFCA00E6C780 /* ViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController2.xib; sourceTree = "<group>"; };
-		0362A6FA1798278E005140EF /* ViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
-		0362A6FB1798278E005140EF /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
+		03239BBF1A5CE02D00E6C780 /* JSTTBNotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTTBNotificationsViewController.h; sourceTree = "<group>"; };
+		03239BC01A5CE02D00E6C780 /* JSTTBNotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTTBNotificationsViewController.m; sourceTree = "<group>"; };
+		03239BC11A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSTTBNotificationsViewController.xib; sourceTree = "<group>"; };
 		038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-toptabbar@2x.png"; sourceTree = "<group>"; };
 		03A23488187905B600F5D68F /* JSTopTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTopTabBarController.h; sourceTree = SOURCE_ROOT; };
 		03A23489187905B600F5D68F /* JSTopTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTopTabBarController.m; sourceTree = SOURCE_ROOT; };
@@ -119,8 +121,9 @@
 				03239BBA1A5CDFCA00E6C780 /* ViewController2.h */,
 				03239BBB1A5CDFCA00E6C780 /* ViewController2.m */,
 				03239BBC1A5CDFCA00E6C780 /* ViewController2.xib */,
-				0362A6FA1798278E005140EF /* ViewController3.h */,
-				0362A6FB1798278E005140EF /* ViewController3.m */,
+				03239BBF1A5CE02D00E6C780 /* JSTTBNotificationsViewController.h */,
+				03239BC01A5CE02D00E6C780 /* JSTTBNotificationsViewController.m */,
+				03239BC11A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib */,
 				03FF7D7D1742B99A00FBBADA /* TableViewController.h */,
 				03FF7D7E1742B99A00FBBADA /* TableViewController.m */,
 				030F92001742AD5000755F75 /* Supporting Files */,
@@ -200,6 +203,7 @@
 			files = (
 				03E02AF51A5B4A8800F3AE7C /* navigation1@2x.png in Resources */,
 				030F92041742AD5000755F75 /* InfoPlist.strings in Resources */,
+				03239BC31A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib in Resources */,
 				030F920C1742AD5000755F75 /* Default.png in Resources */,
 				038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */,
 				03E02AFB1A5B4ABE00F3AE7C /* home@2x.png in Resources */,
@@ -221,10 +225,10 @@
 				03239BBD1A5CDFCA00E6C780 /* ViewController2.m in Sources */,
 				030F92061742AD5000755F75 /* main.m in Sources */,
 				030B93181A5BC05600F9A068 /* ViewController1.m in Sources */,
+				03239BC21A5CE02D00E6C780 /* JSTTBNotificationsViewController.m in Sources */,
 				03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */,
 				030F920A1742AD5000755F75 /* JSTTBAppDelegate.m in Sources */,
 				03FF7D7F1742B99A00FBBADA /* TableViewController.m in Sources */,
-				0362A6FC1798278E005140EF /* ViewController3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
