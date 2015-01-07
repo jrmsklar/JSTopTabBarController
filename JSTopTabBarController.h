@@ -162,7 +162,6 @@
  that a JSTopTabBarButton needs, including title label and badge number.
  */
 
-// TODO: remove the insance variables
 @interface JSTopTabBarButton : UIButton
 
 - (void)setTitle:(NSString *)title;
