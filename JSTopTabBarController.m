@@ -37,6 +37,8 @@ typedef enum {
 }
 
 /* private methods */
+- (void)constrainViewToEntireSuperview:(UIView *)view;
+
 - (void)didTapToggleTopTabBar:(id)sender;
 - (void)didTapTopTabBarButton:(id)sender;
 - (void)move:(UIView*)view direction:(JSTTBMoveDirection)direction by:(NSInteger)amount withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block;
@@ -198,14 +200,15 @@ typedef enum {
         
         [self.view addSubview:self.mainViewController.view];
         
-        // TODO: Use AutoLayout. Make this constrainted to the self.view
-        self.overlay = [[UIView alloc]initWithFrame:self.view.bounds];
+        self.overlay = [[UIView alloc]init];
+        self.overlay.translatesAutoresizingMaskIntoConstraints = NO;
         [self.overlay setBackgroundColor:[UIColor blackColor]];
         [self.overlay setAlpha:0.];
         UITapGestureRecognizer *tappedOverlay = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapOverlay:)];
         [self.overlay addGestureRecognizer:tappedOverlay];
-        
         [self.mainViewController.view addSubview:self.overlay];
+        
+        [self constrainViewToEntireSuperview:self.overlay];
         
         CGRect frame;
         
@@ -286,6 +289,7 @@ typedef enum {
             
             [self.overlay removeFromSuperview];
             [self.mainViewController.view addSubview:self.overlay];
+            [self constrainViewToEntireSuperview:self.overlay];
             
             // update the active indicator on the butons
             for (JSTopTabBarButton *b in self.topTabBarButtons)
@@ -375,6 +379,22 @@ typedef enum {
 
 #pragma mark - Internal methods
 
+- (void)constrainViewToEntireSuperview:(UIView *)view
+{
+    NSDictionary *views = NSDictionaryOfVariableBindings(view);
+    
+    UIView *superiew = view.superview;
+    
+    [superiew addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
+                                                                    options:kNilOptions
+                                                                    metrics:nil
+                                                                       views:views]];
+    
+    [superiew addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|"
+                                                                     options:kNilOptions
+                                                                     metrics:nil
+                                                                       views:views]];
+}
 - (void)didTapToggleTopTabBar:(id)sender
 {
     static CGFloat animationDuration = 0.2;
@@ -418,6 +438,7 @@ typedef enum {
     
     [self.overlay removeFromSuperview];
     [self.mainViewController.view addSubview:self.overlay];
+    [self constrainViewToEntireSuperview:self.overlay];
     
     [self.view addSubview:self.mainViewController.view];
     [self.view bringSubviewToFront:self.toggleTopTabBar];
