@@ -7,11 +7,10 @@
 //
 
 #import "JSTTBTableViewController.h"
-#import "ViewController2.h"
-
 @interface JSTTBTableViewController ()
 
 @end
+#import "JSTTBNavigationViewController.h"
 
 @implementation JSTTBTableViewController
 
@@ -52,8 +51,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ViewController2 *vc2 = [[ViewController2 alloc]init];
-    [self.navigationController pushViewController:vc2 animated:YES];
+    JSTTBNavigationViewController *vc = [[JSTTBNavigationViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

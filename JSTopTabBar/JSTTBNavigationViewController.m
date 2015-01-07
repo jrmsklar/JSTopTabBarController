@@ -1,18 +1,14 @@
 //
-//  ViewController2.m
+//  JSTTBNavigationViewController.m
 //  JSTopTabBar
 //
 //  Created by Josh Sklar on 1/6/15.
 //  Copyright (c) 2015 Josh Sklar. All rights reserved.
 //
 
-#import "ViewController2.h"
+#import "JSTTBNavigationViewController.h"
 
-@interface ViewController2 ()
-
-@end
-
-@implementation ViewController2
+@implementation JSTTBNavigationViewController
 
 - (void)viewDidLoad
 {

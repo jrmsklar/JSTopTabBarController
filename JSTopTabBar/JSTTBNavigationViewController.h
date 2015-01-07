@@ -1,5 +1,5 @@
 //
-//  ViewController2.h
+//  JSTTBNavigationViewController.h
 //  JSTopTabBar
 //
 //  Created by Josh Sklar on 1/6/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController2 : UIViewController
+@interface JSTTBNavigationViewController : UIViewController
 
 @end
