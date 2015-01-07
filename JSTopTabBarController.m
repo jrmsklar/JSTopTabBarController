@@ -68,6 +68,12 @@ typedef enum {
  */
 @property (strong, nonatomic) NSLayoutConstraint *topTabBarButtonWidthConstraint;
 
+/**
+ Top constraint for the first top tab bar button. All of the other buttons
+ are aligned to the top of the first one.
+ */
+@property (strong, nonatomic) NSLayoutConstraint *topTabBarButtonTopConstraint;
+
 @end
 
 @implementation JSTopTabBarController
@@ -113,25 +119,39 @@ typedef enum {
             i++;
         }
         
+        CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+        
         // Constrain the first button
         if (self.topTabBarButtons.count > 0) {
             JSTopTabBarButton *firstButton = [self.topTabBarButtons firstObject];
             NSString *firstButtonKey = @"button0";
             NSMutableDictionary *views = [@{firstButtonKey: firstButton} mutableCopy];
-            NSDictionary *metrics = @{@"buttonWidth": @(btnWidth), @"buttonHeight": @(kTabBarHeight)};
             
-            NSString *verticalVisualFormatString =
-            [NSString stringWithFormat:@"V:|[%@(buttonHeight)]", firstButtonKey];
-            [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalVisualFormatString
-                                                                              options:kNilOptions
-                                                                              metrics:metrics
-                                                                                views:views]];
+            // Constrain it to the top of the view
+            self.topTabBarButtonTopConstraint = [NSLayoutConstraint constraintWithItem:firstButton
+                                                                             attribute:NSLayoutAttributeTop
+                                                                             relatedBy:NSLayoutRelationEqual
+                                                                                toItem:self.view
+                                                                             attribute:NSLayoutAttributeTop
+                                                                            multiplier:1.
+                                                                              constant:statusBarHeight];
+            [self.view addConstraint:self.topTabBarButtonTopConstraint];
             
+            // Constrain the height
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:firstButton
+                                                                 attribute:NSLayoutAttributeHeight
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:nil
+                                                                 attribute:NSLayoutAttributeNotAnAttribute
+                                                                multiplier:1.
+                                                                   constant:kTabBarHeight]];
+            
+            // Constrain it horizontally
             NSString *horizontalVisualFormatString =
             [NSString stringWithFormat:@"H:|[%@]", firstButtonKey];
             [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horizontalVisualFormatString
                                                                               options:kNilOptions
-                                                                              metrics:metrics
+                                                                              metrics:nil
                                                                                 views:views]];
             
             self.topTabBarButtonWidthConstraint = [NSLayoutConstraint constraintWithItem:firstButton
@@ -246,9 +266,16 @@ typedef enum {
 
     NSInteger buttonWidth = size.width / self.viewControllers.count;
     
-    self.topTabBarButtonWidthConstraint.constant = buttonWidth;
-    
-    [self.view layoutIfNeeded];
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        
+        self.topTabBarButtonWidthConstraint.constant = buttonWidth;
+        
+        CGFloat height = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+        self.topTabBarButtonTopConstraint.constant = height;
+        
+        [self.view layoutIfNeeded];
+        
+    } completion:NULL];
 }
 
 - (void)performToggleTopTabBar
@@ -400,20 +427,23 @@ typedef enum {
 - (void)didTapToggleTopTabBar:(id)sender
 {
     static CGFloat animationDuration = 0.2;
+    CGFloat statusBarHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+    
+    CGFloat moveAmount = kTabBarHeight + statusBarHeight;
     
     switch (topTabBarPosition) {
         case JSTTBTopTabBarNotExposed:
             /* move the main view controller and the toggle button down */
-            [self move:self.mainViewController.view direction:JSTTBMoveDirectionDown by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
-            [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionDown by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
+            [self move:self.mainViewController.view direction:JSTTBMoveDirectionDown by:moveAmount withDuration:animationDuration completionBlock:nil];
+            [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionDown by:moveAmount withDuration:animationDuration completionBlock:nil];
             topTabBarPosition = JSTTBTopTabBarExposed;
             [self.mainViewController.view bringSubviewToFront:self.overlay];
             [self partialFade:self.overlay finalAlpha:0.7 withDuration:animationDuration completionBlock:nil];
             break;
         default:
             /* move the main view controller and the toggle button up */
-            [self move:self.mainViewController.view direction:JSTTBMoveDirectionUp by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
-            [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionUp by:kTabBarHeight withDuration:animationDuration completionBlock:nil];
+            [self move:self.mainViewController.view direction:JSTTBMoveDirectionUp by:moveAmount withDuration:animationDuration completionBlock:nil];
+            [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionUp by:moveAmount withDuration:animationDuration completionBlock:nil];
             topTabBarPosition = JSTTBTopTabBarNotExposed;
             [self partialFade:self.overlay finalAlpha:0. withDuration:animationDuration completionBlock:nil];
             break;
