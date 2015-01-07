@@ -2,47 +2,25 @@
 //  JSTTBTableViewController.m
 //  JSTopTabBar
 //
-//  Created by Josh Sklar on 5/14/13.
-//  Copyright (c) 2013 Josh Sklar. All rights reserved.
+//  Created by Josh Sklar on 1/6/15.
+//  Copyright (c) 2015 Josh Sklar. All rights reserved.
 //
 
-#import "TableViewController.h"
+#import "JSTTBTableViewController.h"
 #import "ViewController2.h"
-#import "JSTopTabBarController.h"
 
-@interface TableViewController ()
+@interface JSTTBTableViewController ()
 
 @end
 
-@implementation TableViewController
+@implementation JSTTBTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"TableView + Nav";
+    self.title = @"Table View + Nav";
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
+#pragma mark - Table view data source#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -60,7 +38,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell)  
+    if (!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     [cell.textLabel setText:@"Tap Me"];
     

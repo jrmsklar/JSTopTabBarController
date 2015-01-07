@@ -12,7 +12,7 @@
 #import "ViewController1.h"
 #import "ViewController2.h"
 #import "JSTTBNotificationsViewController.h"
-#import "TableViewController.h"
+#import "JSTTBTableViewController.h"
 
 @implementation JSTTBAppDelegate
 
@@ -23,7 +23,7 @@
     ViewController1 *viewController1 = [[ViewController1 alloc] init];
     ViewController2 *viewController2 = [[ViewController2 alloc] init];
     JSTTBNotificationsViewController *notificationsViewController = [[JSTTBNotificationsViewController alloc]init];
-    TableViewController *tableViewController = [[TableViewController alloc]init];
+    JSTTBTableViewController *tableViewController = [[JSTTBTableViewController alloc]init];
     
     UINavigationController *navController1 = [[UINavigationController alloc]initWithRootViewController:viewController2];
     UINavigationController *navController2 = [[UINavigationController alloc]initWithRootViewController:tableViewController];
