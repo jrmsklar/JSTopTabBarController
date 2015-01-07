@@ -10,8 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
-static const CGFloat kTabBarHeight = 70.;
-static const CGFloat kStatusBarHeight = 20;
+static const CGFloat kTabBarHeight = 90.;
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -496,6 +495,8 @@ typedef enum {
 {
     UIPanGestureRecognizer *recognizer = (UIPanGestureRecognizer*)sender;
     
+    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    
     if (recognizer.state == UIGestureRecognizerStateChanged) {
         
         UIView *draggedButton = recognizer.view;
@@ -513,8 +514,8 @@ typedef enum {
         
         if (newButtonFrame.origin.x + newButtonFrame.size.width >= kScreenWidth)
             newButtonFrame.origin.x = kScreenWidth - newButtonFrame.size.width;
-        if (newButtonFrame.origin.y + newButtonFrame.size.height >= kScreenHeight - kStatusBarHeight)
-            newButtonFrame.origin.y = kScreenHeight - newButtonFrame.size.height - kStatusBarHeight;
+        if (newButtonFrame.origin.y + newButtonFrame.size.height >= kScreenHeight - statusBarHeight)
+            newButtonFrame.origin.y = kScreenHeight - newButtonFrame.size.height - statusBarHeight;
         
         draggedButton.frame = newButtonFrame;
         
@@ -535,7 +536,7 @@ typedef enum {
         // find the distance to the closer y edge
         if (yPos > halfwayPointY) {
             yDistance = [UIScreen mainScreen].bounds.size.height - yPos;
-            finalY = [UIScreen mainScreen].bounds.size.height - self.toggleTopTabBar.frame.size.height - kStatusBarHeight;
+            finalY = [UIScreen mainScreen].bounds.size.height - self.toggleTopTabBar.frame.size.height - statusBarHeight;
         }
         else {
             yDistance = yPos;
