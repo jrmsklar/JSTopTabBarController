@@ -628,20 +628,21 @@ typedef enum {
 
 @implementation UIViewController (JSTopTabBarItem)
 
-@dynamic topTabBar;
-
 static const char* topTabBarKey = "TopTabBarKey";
 
-- (JSTopTabBarController*)topTabBar_core {
+- (JSTopTabBarController*)topTabBar_core
+{
     return objc_getAssociatedObject(self, topTabBarKey);
 }
 
-- (JSTopTabBarController*)topTabBar {
+- (JSTopTabBarController*)topTabBar
+{
     id result = [self topTabBar_core];
     return result;
 }
 
-- (void)setTopTabBar:(JSTopTabBarController *)topTabBar {
+- (void)setTopTabBar:(JSTopTabBarController *)topTabBar
+{
     objc_setAssociatedObject(self, topTabBarKey, topTabBar, OBJC_ASSOCIATION_ASSIGN);
 }
 
