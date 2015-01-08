@@ -113,6 +113,7 @@
 		030F91FF1742AD5000755F75 /* JSTopTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				03DEFD4E1A5E267A002280C7 /* Assets */,
 				030F92081742AD5000755F75 /* JSTTBAppDelegate.h */,
 				030F92091742AD5000755F75 /* JSTTBAppDelegate.m */,
 				03239BCE1A5CE1C200E6C780 /* JSTopTabBarController */,
@@ -136,11 +137,6 @@
 		030F92001742AD5000755F75 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */,
-				03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */,
-				03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */,
-				03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */,
-				038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */,
 				030F92011742AD5000755F75 /* JSTopTabBar-Info.plist */,
 				030F92021742AD5000755F75 /* InfoPlist.strings */,
 				030F92051742AD5000755F75 /* main.m */,
@@ -158,6 +154,34 @@
 				03A23489187905B600F5D68F /* JSTopTabBarController.m */,
 			);
 			name = JSTopTabBarController;
+			sourceTree = "<group>";
+		};
+		03DEFD4E1A5E267A002280C7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				03DEFD4F1A5E2680002280C7 /* Images */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		03DEFD4F1A5E2680002280C7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				03DEFD501A5E2691002280C7 /* Icons */,
+				038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		03DEFD501A5E2691002280C7 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */,
+				03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */,
+				03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */,
+				03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
