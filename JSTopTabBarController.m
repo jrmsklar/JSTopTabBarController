@@ -182,6 +182,7 @@ typedef enum {
             [views setObject:previousButton
                       forKey:previousButtonKey];
             
+            // Constrain the rest of the buttons
             for (NSInteger index = 1; index < self.topTabBarButtons.count; index++) {
                 JSTopTabBarButton *nextButton = [self.topTabBarButtons objectAtIndex:index];
 
@@ -270,7 +271,12 @@ typedef enum {
     return self;
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+/*
+ When transitioning the view's size (eg. changing device orientation),
+ udate the width and top constraints for the top tab bar buttons.
+ */
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
