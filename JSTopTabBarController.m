@@ -304,9 +304,9 @@ typedef enum {
     }
 }
 
-- (void)setBackgroundImage:(NSString*)backgroundImageName
+- (void)setBackgroundImage:(UIImage *)backgroundImage
 {
-    [self.backgroundImageView setImage:[UIImage imageNamed:backgroundImageName]];
+    [self.backgroundImageView setImage:backgroundImage];
 }
 
 - (void)setActiveViewController:(UIViewController*)viewController
@@ -358,9 +358,9 @@ typedef enum {
     [b setBadgeNumber:badgeNum];
 }
 
-- (void)setToggleTabBarButtonImage:(NSString*)imageName
+- (void)setToggleTabBarButtonImage:(UIImage *)image
 {
-    [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [self.toggleTopTabBar setBackgroundImage:image forState:UIControlStateNormal];
 }
 
 - (void)enablePanningOfToggleTopTabBarButton:(BOOL)panningEnabled
