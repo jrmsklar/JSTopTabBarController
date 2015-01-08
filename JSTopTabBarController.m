@@ -12,6 +12,8 @@
 
 static const CGFloat kTabBarHeight = 90.;
 
+static const CGFloat kToggleTopTabBarButtonBuffer = 10.;
+
 typedef enum {
     JSTTBTopTabBarExposed,
     JSTTBTopTabBarNotExposed
@@ -237,9 +239,8 @@ typedef enum {
         
         // Don't use AutoLayout for this, and enable panning it around
         CGFloat buttonSize = 20.;
-        CGFloat buffer = 10.;
-        CGRect frame = CGRectMake(CGRectGetWidth(self.view.bounds) - (buttonSize + buffer),
-                                  buttonSize + buffer,
+        CGRect frame = CGRectMake(CGRectGetWidth(self.view.bounds) - (buttonSize + kToggleTopTabBarButtonBuffer),
+                                  buttonSize + kToggleTopTabBarButtonBuffer,
                                   buttonSize,
                                   buttonSize);
         self.toggleTopTabBar = [[UIButton alloc]initWithFrame:frame];
@@ -540,7 +541,7 @@ typedef enum {
         newButtonFrame.origin.x += translation.x;
         newButtonFrame.origin.y += translation.y;
         
-        // allow dragging on the edges of the screen
+        // Don't allow dragging on the edges of the screen
         if (newButtonFrame.origin.x <= 0)
             newButtonFrame.origin.x = 0;
         if (newButtonFrame.origin.y <= self.mainViewController.view.frame.origin.y)
@@ -567,23 +568,23 @@ typedef enum {
         CGFloat yDistance, xDistance;
         CGFloat finalY, finalX;
         
-        // find the distance to the closer y edge
+        // Find the distance to the closer y edge
         if (yPos > halfwayPointY) {
             yDistance = [UIScreen mainScreen].bounds.size.height - yPos;
             finalY = [UIScreen mainScreen].bounds.size.height - self.toggleTopTabBar.frame.size.height - statusBarHeight;
         }
         else {
             yDistance = yPos;
-            finalY = self.mainViewController.view.frame.origin.y;
+            finalY = self.mainViewController.view.frame.origin.y + statusBarHeight + kToggleTopTabBarButtonBuffer;
         }
         // find distance to closer x edge
         if (xPos > halfwayPointX) {
             xDistance = [UIScreen mainScreen].bounds.size.width - xPos;
-            finalX = [UIScreen mainScreen].bounds.size.width - self.toggleTopTabBar.frame.size.width;
+            finalX = [UIScreen mainScreen].bounds.size.width - self.toggleTopTabBar.frame.size.width - kToggleTopTabBarButtonBuffer;
         }
         else {
             xDistance = xPos;
-            finalX = 0;
+            finalX = kToggleTopTabBarButtonBuffer;
         }
         
         CGFloat animationDuration = 0.1;
