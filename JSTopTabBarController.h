@@ -28,7 +28,7 @@
  manage and hold. Should only be called once in the entire application, as
  there should only be one JSTopTabBarController.
  */
-- (id)initWithViewControllers:(NSArray*)viewControllers;
+- (id)initWithViewControllers:(NSArray *)viewControllers;
 
 /**
  Programatically toggles the top tab bar.
@@ -45,7 +45,7 @@
  Throws exception if the size of titles is not the same as the number of the view controllers
  used in init.
  */
-- (void)setButtonTitles:(NSArray*)titles;
+- (void)setButtonTitles:(NSArray *)titles;
 
 /**
  Optional. If not called, there will be no images.
@@ -73,7 +73,7 @@
  
  Throw exception if viewController is not in the view controllers used in init.
  */
-- (void)setActiveViewController:(UIViewController*)viewController;
+- (void)setActiveViewController:(UIViewController *)viewController;
 
 /**
  Optional. Same specifications as above, but uses integer indexing.
@@ -149,7 +149,7 @@
 @protocol JSTopTabBarControllerDelegate <NSObject>
 
 @optional
-- (void)topTabBar:(JSTopTabBarController*)topTabBarController didSelectViewController:(UIViewController*)viewController;
+- (void)topTabBar:(JSTopTabBarController *)topTabBarController didSelectViewController:(UIViewController *)viewController;
 
 @end
 
