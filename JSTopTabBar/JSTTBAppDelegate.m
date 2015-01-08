@@ -30,14 +30,17 @@
     
     JSTopTabBarController *topTabBarController = [[JSTopTabBarController alloc]
                                                   initWithViewControllers:@[normalViewController, notificationsViewController, navController1, navController2]];
+    
     [topTabBarController setButtonImages:@[[UIImage imageNamed:@"home"],
                                           [UIImage imageNamed:@"notifications"],
                                           [UIImage imageNamed:@"navigation2"],
                                            [UIImage imageNamed:@"navigation1"]]];
     
     [topTabBarController setButtonTitles:@[@"Normal", @"Notifications", @"Navigation Controller", @"Table + Nav ViewController"]];
+    
     [topTabBarController setBadgedTabIndex:1];
     [topTabBarController setBadgeNumber:3];
+    
     // can also do [topTabBarController setActiveViewControllerWithIndex:3]
     [topTabBarController enablePanningOfToggleTopTabBarButton:NO];
     
