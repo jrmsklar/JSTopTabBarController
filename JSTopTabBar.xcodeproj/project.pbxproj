@@ -22,13 +22,13 @@
 		03239BC31A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03239BC11A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib */; };
 		03239BCC1A5CE12600E6C780 /* JSTTBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03239BCA1A5CE12600E6C780 /* JSTTBTableViewController.m */; };
 		03239BCD1A5CE12600E6C780 /* JSTTBTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03239BCB1A5CE12600E6C780 /* JSTTBTableViewController.xib */; };
-		038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */; };
 		03A2348A187905B600F5D68F /* JSTopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A23489187905B600F5D68F /* JSTopTabBarController.m */; };
 		03BC8EF81A5B3348002FE0D9 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03BC8EF71A5B3348002FE0D9 /* Launch Screen.xib */; };
-		03E02AF51A5B4A8800F3AE7C /* navigation1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */; };
-		03E02AF71A5B4A8D00F3AE7C /* navigation2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */; };
-		03E02AF91A5B4AAD00F3AE7C /* notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */; };
-		03E02AFB1A5B4ABE00F3AE7C /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */; };
+		03DEFD551A5E26D1002280C7 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03DEFD511A5E26D1002280C7 /* home@2x.png */; };
+		03DEFD561A5E26D1002280C7 /* navigation1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03DEFD521A5E26D1002280C7 /* navigation1@2x.png */; };
+		03DEFD571A5E26D1002280C7 /* navigation2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03DEFD531A5E26D1002280C7 /* navigation2@2x.png */; };
+		03DEFD581A5E26D1002280C7 /* notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03DEFD541A5E26D1002280C7 /* notifications@2x.png */; };
+		03DEFD5A1A5E26F4002280C7 /* arrow-toptabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03DEFD591A5E26F4002280C7 /* arrow-toptabbar@2x.png */; };
 		03FF7D811742BBDE00FBBADA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FF7D801742BBDE00FBBADA /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,14 +56,14 @@
 		03239BC91A5CE12600E6C780 /* JSTTBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTTBTableViewController.h; sourceTree = "<group>"; };
 		03239BCA1A5CE12600E6C780 /* JSTTBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTTBTableViewController.m; sourceTree = "<group>"; };
 		03239BCB1A5CE12600E6C780 /* JSTTBTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSTTBTableViewController.xib; sourceTree = "<group>"; };
-		038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-toptabbar@2x.png"; sourceTree = "<group>"; };
 		03A23488187905B600F5D68F /* JSTopTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTopTabBarController.h; sourceTree = SOURCE_ROOT; };
 		03A23489187905B600F5D68F /* JSTopTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTopTabBarController.m; sourceTree = SOURCE_ROOT; };
 		03BC8EF71A5B3348002FE0D9 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
-		03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation1@2x.png"; sourceTree = "<group>"; };
-		03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation2@2x.png"; sourceTree = "<group>"; };
-		03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifications@2x.png"; sourceTree = "<group>"; };
-		03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		03DEFD511A5E26D1002280C7 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home@2x.png"; path = "Assets/Icons/home@2x.png"; sourceTree = "<group>"; };
+		03DEFD521A5E26D1002280C7 /* navigation1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation1@2x.png"; path = "Assets/Icons/navigation1@2x.png"; sourceTree = "<group>"; };
+		03DEFD531A5E26D1002280C7 /* navigation2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigation2@2x.png"; path = "Assets/Icons/navigation2@2x.png"; sourceTree = "<group>"; };
+		03DEFD541A5E26D1002280C7 /* notifications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notifications@2x.png"; path = "Assets/Icons/notifications@2x.png"; sourceTree = "<group>"; };
+		03DEFD591A5E26F4002280C7 /* arrow-toptabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-toptabbar@2x.png"; path = "Assets/arrow-toptabbar@2x.png"; sourceTree = "<group>"; };
 		03FF7D801742BBDE00FBBADA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -167,8 +167,8 @@
 		03DEFD4F1A5E2680002280C7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				03DEFD591A5E26F4002280C7 /* arrow-toptabbar@2x.png */,
 				03DEFD501A5E2691002280C7 /* Icons */,
-				038DC00217988D49009A4566 /* arrow-toptabbar@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -176,10 +176,10 @@
 		03DEFD501A5E2691002280C7 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				03E02AF41A5B4A8800F3AE7C /* navigation1@2x.png */,
-				03E02AF61A5B4A8D00F3AE7C /* navigation2@2x.png */,
-				03E02AF81A5B4AAD00F3AE7C /* notifications@2x.png */,
-				03E02AFA1A5B4ABE00F3AE7C /* home@2x.png */,
+				03DEFD511A5E26D1002280C7 /* home@2x.png */,
+				03DEFD521A5E26D1002280C7 /* navigation1@2x.png */,
+				03DEFD531A5E26D1002280C7 /* navigation2@2x.png */,
+				03DEFD541A5E26D1002280C7 /* notifications@2x.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -236,17 +236,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03E02AF51A5B4A8800F3AE7C /* navigation1@2x.png in Resources */,
+				03DEFD5A1A5E26F4002280C7 /* arrow-toptabbar@2x.png in Resources */,
 				030F92041742AD5000755F75 /* InfoPlist.strings in Resources */,
 				03239BC31A5CE02D00E6C780 /* JSTTBNotificationsViewController.xib in Resources */,
 				03239BCD1A5CE12600E6C780 /* JSTTBTableViewController.xib in Resources */,
+				03DEFD551A5E26D1002280C7 /* home@2x.png in Resources */,
 				030F920C1742AD5000755F75 /* Default.png in Resources */,
-				038DC00317988D49009A4566 /* arrow-toptabbar@2x.png in Resources */,
-				03E02AFB1A5B4ABE00F3AE7C /* home@2x.png in Resources */,
+				03DEFD561A5E26D1002280C7 /* navigation1@2x.png in Resources */,
 				03239BBE1A5CDFCA00E6C780 /* JSTTBNavigationViewController.xib in Resources */,
 				030B93191A5BC05600F9A068 /* JSTTBNormalViewController.xib in Resources */,
-				03E02AF71A5B4A8D00F3AE7C /* navigation2@2x.png in Resources */,
-				03E02AF91A5B4AAD00F3AE7C /* notifications@2x.png in Resources */,
+				03DEFD581A5E26D1002280C7 /* notifications@2x.png in Resources */,
+				03DEFD571A5E26D1002280C7 /* navigation2@2x.png in Resources */,
 				03BC8EF81A5B3348002FE0D9 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
