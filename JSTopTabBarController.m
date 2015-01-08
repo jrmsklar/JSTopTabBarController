@@ -236,7 +236,12 @@ typedef enum {
         
         
         // Don't use AutoLayout for this, and enable panning it around
-        CGRect frame = CGRectMake(self.view.bounds.size.width - 30, 30, 20, 20);
+        CGFloat buttonSize = 20.;
+        CGFloat buffer = 10.;
+        CGRect frame = CGRectMake(CGRectGetWidth(self.view.bounds) - (buttonSize + buffer),
+                                  buttonSize + buffer,
+                                  buttonSize,
+                                  buttonSize);
         self.toggleTopTabBar = [[UIButton alloc]initWithFrame:frame];
         self.toggleTopTabBar.layer.shadowColor = [UIColor blackColor].CGColor;
         self.toggleTopTabBar.layer.shadowRadius = 10.;
