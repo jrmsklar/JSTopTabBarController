@@ -412,9 +412,11 @@ typedef enum {
 - (void)activateTopTabBar
 {
     [self.toggleTopTabBar setHidden:NO];
+    
     for (JSTopTabBarButton *b in self.topTabBarButtons) {
         [b setHidden:NO];
     }
+    
     [self.view bringSubviewToFront:self.mainViewController.view];
     [self.view bringSubviewToFront:self.toggleTopTabBar];
 }
@@ -437,6 +439,7 @@ typedef enum {
                                                                      metrics:nil
                                                                        views:views]];
 }
+
 - (void)didTapToggleTopTabBar:(id)sender
 {
     static CGFloat animationDuration = 0.2;
@@ -467,13 +470,14 @@ typedef enum {
 {
     JSTopTabBarButton *b = (JSTopTabBarButton*)sender;
     
-    for (JSTopTabBarButton *b in self.topTabBarButtons)
+    for (JSTopTabBarButton *b in self.topTabBarButtons) {
         [b setActive:NO];
+    }
     
     [b setActive:YES];
     
     self.selectedIndex = b.tag;
-    
+
     [self.mainViewController.view removeFromSuperview];
     
     UIViewController *nextViewController = [self.viewControllers objectAtIndex:b.tag];
