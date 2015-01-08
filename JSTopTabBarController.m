@@ -40,15 +40,21 @@ typedef enum {
 
 @property (nonatomic) JSTTBTopTabBarPosition topTabBarPosition;
 
-/* Array of all of the buttons contained in the JSTopTabBar */
+/**
+ Array of all of the buttons contained in the JSTopTabBarController.
+ */
 @property (strong, nonatomic) NSMutableArray *topTabBarButtons;
 
-/* Used for the toggle top tab bar button */
+/**
+ Used for the toggle top tab bar button.
+ */
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 @property(nonatomic,copy) NSArray *viewControllers;
 
-/* The active view controller */
+/**
+ The active view controller.
+ */
 @property (strong, nonatomic) UIViewController *mainViewController;
 
 @property (strong, nonatomic) UIView *overlay;
