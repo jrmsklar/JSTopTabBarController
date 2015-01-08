@@ -7,6 +7,7 @@
 //
 
 #import "JSTopTabBarController.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
@@ -30,7 +31,6 @@ typedef enum {
 
 /* private methods */
 - (void)constrainViewToEntireSuperview:(UIView *)view;
-
 - (void)didTapToggleTopTabBar:(id)sender;
 - (void)didTapTopTabBarButton:(id)sender;
 - (void)move:(UIView*)view direction:(JSTTBMoveDirection)direction by:(NSInteger)amount withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block;
