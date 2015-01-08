@@ -251,9 +251,7 @@ typedef enum {
                                   buttonSize,
                                   buttonSize);
         self.toggleTopTabBar = [[UIButton alloc]initWithFrame:frame];
-        self.toggleTopTabBar.layer.shadowColor = [UIColor blackColor].CGColor;
-        self.toggleTopTabBar.layer.shadowRadius = 10.;
-        self.toggleTopTabBar.layer.shadowOpacity = 0.5;
+        [self enableShadowOnTopTabBarButton:YES];
         [self.toggleTopTabBar addTarget:self action:@selector(didTapToggleTopTabBar:) forControlEvents:UIControlEventTouchUpInside];
         [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:@"arrow-toptabbar"] forState:UIControlStateNormal];
         [self.view addSubview:self.toggleTopTabBar];
@@ -658,9 +656,9 @@ static const char* topTabBarKey = "TopTabBarKey";
 - (id)init
 {
     if (self = [super init]) {
-        // configure border
+        // Configure border
         self.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.layer.borderWidth = 1.;
+        [self enableBorder:YES];
     
         self.jsTitleLabel = [[UILabel alloc]init];
         self.jsTitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
