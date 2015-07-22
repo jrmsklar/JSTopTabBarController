@@ -147,15 +147,6 @@ typedef enum {
                                                                               metrics:@{topSpacingKey: @(statusBarHeight)}
                                                                                 views:views]];
             
-            // Constrain the height
-            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:firstButton
-                                                                 attribute:NSLayoutAttributeHeight
-                                                                 relatedBy:NSLayoutRelationEqual
-                                                                    toItem:nil
-                                                                 attribute:NSLayoutAttributeNotAnAttribute
-                                                                multiplier:1.
-                                                                   constant:kTabBarHeight]];
-            
             // Constrain it horizontally
             NSString *horizontalVisualFormatString =
             [NSString stringWithFormat:@"H:|[%@]", firstButtonKey];
@@ -164,6 +155,15 @@ typedef enum {
                                                                               metrics:nil
                                                                                 views:views]];
             
+            // Constrain the height
+            [self.view addConstraint:[NSLayoutConstraint constraintWithItem:firstButton
+                                                                 attribute:NSLayoutAttributeHeight
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:nil
+                                                                 attribute:NSLayoutAttributeNotAnAttribute
+                                                                multiplier:1.
+                                                                   constant:kTabBarHeight]];
+
             self.topTabBarButtonWidthConstraint = [NSLayoutConstraint constraintWithItem:firstButton
                                                                                attribute:NSLayoutAttributeWidth
                                                                                relatedBy:NSLayoutRelationEqual
