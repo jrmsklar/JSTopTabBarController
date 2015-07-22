@@ -138,15 +138,14 @@ typedef enum {
             NSString *firstButtonKey = @"button0";
             NSMutableDictionary *views = [@{firstButtonKey: firstButton} mutableCopy];
             
-            // Constrain it to the top of the view
-            self.topTabBarButtonTopConstraint = [NSLayoutConstraint constraintWithItem:firstButton
-                                                                             attribute:NSLayoutAttributeTop
-                                                                             relatedBy:NSLayoutRelationEqual
-                                                                                toItem:self.view
-                                                                             attribute:NSLayoutAttributeTop
-                                                                            multiplier:1.
-                                                                              constant:statusBarHeight];
-            [self.view addConstraint:self.topTabBarButtonTopConstraint];
+            // Constrain it vertically
+            NSString *topSpacingKey = @"topSpacing";
+            NSString *verticalVisualFormatString =
+            [NSString stringWithFormat:@"V:|-%@-[%@]", topSpacingKey, firstButtonKey];
+            [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:verticalVisualFormatString
+                                                                              options:kNilOptions
+                                                                              metrics:@{topSpacingKey: @(statusBarHeight)}
+                                                                                views:views]];
             
             // Constrain the height
             [self.view addConstraint:[NSLayoutConstraint constraintWithItem:firstButton
