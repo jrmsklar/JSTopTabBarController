@@ -1,8 +1,8 @@
-# OS X
-.DS_Store
-
-# Xcode
+## Build generated
 build/
+DerivedData
+
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -12,11 +12,16 @@ build/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
+
+## Other
 *.xccheckout
-profile
 *.moved-aside
-DerivedData
+*.xcuserstate
+*.xcscmblueprint
+
+## Obj-C/Swift specific
 *.hmap
-*.xccheckout
+*.ipa
 
-
+# OS X
+.DS_Store
