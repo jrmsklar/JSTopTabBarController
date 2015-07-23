@@ -13,7 +13,7 @@
 
 static const CGFloat kTabBarHeight = 90.;
 
-static const CGFloat kToggleTopTabBarButtonBuffer = 10.;
+static const CGFloat kToggleTopTabBarButtonBuffer = 20.;
 
 typedef enum {
     JSTTBTopTabBarExposed,
