@@ -505,9 +505,8 @@ typedef enum {
 - (void)didTapToggleTopTabBar:(id)sender
 {
     static CGFloat animationDuration = 0.2;
-    CGFloat statusBarHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
     
-    CGFloat moveAmount = kTabBarHeight + statusBarHeight;
+    CGFloat moveAmount = kTabBarHeight + self.topTabBarButtonTopConstraint.constant;
     
     switch (self.topTabBarPosition) {
         case JSTTBTopTabBarNotExposed:
