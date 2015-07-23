@@ -24,9 +24,7 @@ typedef enum {
 
 typedef enum {
     JSTTBMoveDirectionUp,
-    JSTTBMoveDirectionDown,
-    JSTTBMoveDirectionRight,
-    JSTTBMoveDirectionLeft
+    JSTTBMoveDirectionDown
 } JSTTBMoveDirection;
 
 @interface JSTopTabBarController ()
@@ -835,20 +833,14 @@ static const char* topTabBarKey = "TopTabBarKey";
                      animations:^{
                          switch (direction) {
                              case JSTTBMoveDirectionUp:
-                                 [view setCenter:CGPointMake(view.center.x, view.center.y-amount)];
-                                 /* rotate it 180 degrees */
+                                 view.center = CGPointMake(view.center.x, view.center.y - amount);
+                                 /* rotate toggleTopTabBar 180 degrees */
                                  self.topTabBar.toggleTopTabBar.transform = CGAffineTransformMakeRotation(M_PI*2);
                                  break;
                              case JSTTBMoveDirectionDown:
-                                 /* rotate it 180 degrees */
                                  self.topTabBar.toggleTopTabBar.transform = CGAffineTransformMakeRotation(M_PI);
-                                 [view setCenter:CGPointMake(view.center.x, view.center.y+amount)];
-                                 break;
-                             case JSTTBMoveDirectionLeft:
-                                 [view setCenter:CGPointMake(view.center.x - amount, view.center.y)];
-                                 break;
-                             case JSTTBMoveDirectionRight:
-                                 [view setCenter:CGPointMake(view.center.x + amount, view.center.y)];
+                                 /* rotate toggleTopTabBar 180 degrees */
+                                 view.center = CGPointMake(view.center.x, view.center.y + amount);
                                  break;
                              default:
                                  break;
@@ -866,7 +858,7 @@ static const char* topTabBarKey = "TopTabBarKey";
                           delay:0
                         options:kAnimationOptions
                      animations:^{
-                         [view setAlpha:alpha];
+                         view.alpha = alpha;
                      }
                      completion:block];
 }
