@@ -114,7 +114,7 @@ typedef enum {
         self.topTabBarButtons = [[NSMutableArray alloc]initWithCapacity:viewControllers.count];
         
         for (UIViewController *vc in self.viewControllers) {
-            [vc setTopTabBar:self];
+            vc.topTabBar = self;
             vc.view.frame = self.view.bounds;
             
             JSTopTabBarButton *button = [[JSTopTabBarButton alloc]init];
