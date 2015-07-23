@@ -15,6 +15,8 @@ static const CGFloat kTabBarHeight = 90.;
 
 static const CGFloat kToggleTopTabBarButtonBuffer = 20.;
 
+static const UIViewAnimationOptions kAnimationOptions = UIViewAnimationOptionCurveEaseInOut;
+
 typedef enum {
     JSTTBTopTabBarExposed,
     JSTTBTopTabBarNotExposed
@@ -33,8 +35,6 @@ typedef enum {
 - (void)constrainViewToEntireSuperview:(UIView *)view;
 - (void)didTapToggleTopTabBar:(id)sender;
 - (void)didTapTopTabBarButton:(id)sender;
-- (void)move:(UIView*)view direction:(JSTTBMoveDirection)direction by:(NSInteger)amount withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block;
-- (void)partialFade:(UIView*)view finalAlpha:(CGFloat)alpha withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block;
 - (void)didPanToggleTopBarButton:(id)sender;
 - (void)didTapOverlay:(id)sender;
 
@@ -80,6 +80,45 @@ typedef enum {
  bar is toggled.
  */
 @property (strong, nonatomic) NSLayoutConstraint *toggleTopTabBarButtonTopConstraint;
+
+@end
+
+/**
+ @category UIViewController+JSTopTabBarController
+ 
+ @brief Category on UIViewController to provide convenience methods to
+ add/remove child view controllers, move views, perform animations, and fade views.
+ */
+
+@interface UIViewController(JSTopTabBarController)
+
+/**
+ Convenience method to add a new child view controller. Performs all of the UIViewController
+ containment logic required.
+ */
+- (void)JSTTB_addChildViewController:(UIViewController *)childViewController;
+
+/**
+ Convenience method to remove a child view controller. Performs all of the UIViewController
+ containment logic required.
+ */
+- (void)JSTTB_removeFromParentViewController;
+
+- (void)JSTTB_move:(UIView*)view
+         direction:(JSTTBMoveDirection)direction
+                by:(NSInteger)amount
+      withDuration:(NSTimeInterval)duration
+   completionBlock:(void (^)(BOOL finished))block;
+
+- (void)JSTTB_partialFade:(UIView*)view
+               finalAlpha:(CGFloat)alpha
+             withDuration:(NSTimeInterval)duration
+          completionBlock:(void (^)(BOOL finished))block;
+
+- (void)JSTTB_adjustConstraint:(NSLayoutConstraint *)constraint
+                      constant:(CGFloat)constant
+                      duration:(NSTimeInterval)duration
+               completionBlock:(void (^)(BOOL finished))block;
 
 @end
 
@@ -236,7 +275,7 @@ typedef enum {
         
         self.selectedIndex = 0;
         
-        [self.view addSubview:self.mainViewController.view];
+        [self JSTTB_addChildViewController:self.mainViewController];
         
         self.overlay = [[UIView alloc]init];
         self.overlay.translatesAutoresizingMaskIntoConstraints = NO;
@@ -472,18 +511,30 @@ typedef enum {
     switch (self.topTabBarPosition) {
         case JSTTBTopTabBarNotExposed:
             /* move the main view controller and the toggle button down */
-            [self move:self.mainViewController.view direction:JSTTBMoveDirectionDown by:moveAmount withDuration:animationDuration completionBlock:nil];
-            [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionDown by:moveAmount withDuration:animationDuration completionBlock:nil];
+            [self JSTTB_move:self.mainViewController.view
+                   direction:JSTTBMoveDirectionDown
+                          by:moveAmount
+                withDuration:animationDuration
+             completionBlock:NULL];
+            [self JSTTB_adjustConstraint:self.toggleTopTabBarButtonTopConstraint
+                                constant:(kToggleTopTabBarButtonBuffer + moveAmount)
+                                duration:animationDuration
+                         completionBlock:NULL];
+            
             self.topTabBarPosition = JSTTBTopTabBarExposed;
             [self.mainViewController.view bringSubviewToFront:self.overlay];
-            [self partialFade:self.overlay finalAlpha:0.7 withDuration:animationDuration completionBlock:nil];
+            [self JSTTB_partialFade:self.overlay finalAlpha:0.7 withDuration:animationDuration completionBlock:nil];
             break;
         default:
             /* move the main view controller and the toggle button up */
-            [self move:self.mainViewController.view direction:JSTTBMoveDirectionUp by:moveAmount withDuration:animationDuration completionBlock:nil];
-            [self move:self.toggleTopTabBar direction:JSTTBMoveDirectionUp by:moveAmount withDuration:animationDuration completionBlock:nil];
+            [self JSTTB_move:self.mainViewController.view direction:JSTTBMoveDirectionUp by:moveAmount withDuration:animationDuration completionBlock:nil];
+            [self JSTTB_adjustConstraint:self.toggleTopTabBarButtonTopConstraint
+                                constant:kToggleTopTabBarButtonBuffer
+                                duration:animationDuration
+                         completionBlock:NULL];
+            
             self.topTabBarPosition = JSTTBTopTabBarNotExposed;
-            [self partialFade:self.overlay finalAlpha:0. withDuration:animationDuration completionBlock:nil];
+            [self JSTTB_partialFade:self.overlay finalAlpha:0. withDuration:animationDuration completionBlock:nil];
             break;
     }
 }
@@ -499,8 +550,8 @@ typedef enum {
     [b setActive:YES];
     
     self.selectedIndex = b.tag;
-
-    [self.mainViewController.view removeFromSuperview];
+    
+    [self.mainViewController JSTTB_removeFromParentViewController];
     
     UIViewController *nextViewController = [self.viewControllers objectAtIndex:b.tag];
     nextViewController.view.frame = self.mainViewController.view.frame;
@@ -511,53 +562,11 @@ typedef enum {
     [self.mainViewController.view addSubview:self.overlay];
     [self constrainViewToEntireSuperview:self.overlay];
     
-    [self.view addSubview:self.mainViewController.view];
+    [self JSTTB_addChildViewController:self.mainViewController];
+    
     [self.view bringSubviewToFront:self.toggleTopTabBar];
     
     [self didTapToggleTopTabBar:nil];
-}
-
-#pragma mark - Helper methods
-
-- (void)move:(UIView*)view direction:(JSTTBMoveDirection)direction by:(NSInteger)amount withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block
-{
-    [UIView animateWithDuration:duration
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         switch (direction) {
-                             case JSTTBMoveDirectionUp:
-                                 [view setCenter:CGPointMake(view.center.x, view.center.y-amount)];
-                                 /* rotate it 180 degrees */
-                                 self.toggleTopTabBar.transform = CGAffineTransformMakeRotation(M_PI*2);
-                                 break;
-                             case JSTTBMoveDirectionDown:
-                                 /* rotate it 180 degrees */
-                                 self.toggleTopTabBar.transform = CGAffineTransformMakeRotation(M_PI);
-                                 [view setCenter:CGPointMake(view.center.x, view.center.y+amount)];
-                                 break;
-                             case JSTTBMoveDirectionLeft:
-                                 [view setCenter:CGPointMake(view.center.x - amount, view.center.y)];
-                                 break;
-                             case JSTTBMoveDirectionRight:
-                                 [view setCenter:CGPointMake(view.center.x + amount, view.center.y)];
-                                 break;
-                             default:
-                                 break;
-                         }
-                     }
-                     completion:block];
-}
-
-- (void)partialFade:(UIView*)view finalAlpha:(CGFloat)alpha withDuration:(NSTimeInterval)duration completionBlock:(void (^)(BOOL finished))block
-{
-    [UIView animateWithDuration:duration
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         [view setAlpha:alpha];
-                     }
-                     completion:block];
 }
 
 - (void)didPanToggleTopBarButton:(id)sender
@@ -794,6 +803,86 @@ static const char* topTabBarKey = "TopTabBarKey";
         self.layer.borderWidth = 1.;
     else
         self.layer.borderWidth = 0.;
+}
+
+@end
+
+@implementation UIViewController(JSTopTabBarController)
+
+- (void)JSTTB_addChildViewController:(UIViewController *)childViewController
+{
+    [self addChildViewController:childViewController];
+    [self.view addSubview:childViewController.view];
+    [childViewController didMoveToParentViewController:self];
+}
+
+- (void)JSTTB_removeFromParentViewController
+{
+    [self willMoveToParentViewController:nil];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
+
+- (void)JSTTB_move:(UIView*)view
+         direction:(JSTTBMoveDirection)direction
+                by:(NSInteger)amount
+      withDuration:(NSTimeInterval)duration
+   completionBlock:(void (^)(BOOL finished))block
+{
+    [UIView animateWithDuration:duration
+                          delay:0
+                        options:kAnimationOptions
+                     animations:^{
+                         switch (direction) {
+                             case JSTTBMoveDirectionUp:
+                                 [view setCenter:CGPointMake(view.center.x, view.center.y-amount)];
+                                 /* rotate it 180 degrees */
+                                 self.topTabBar.toggleTopTabBar.transform = CGAffineTransformMakeRotation(M_PI*2);
+                                 break;
+                             case JSTTBMoveDirectionDown:
+                                 /* rotate it 180 degrees */
+                                 self.topTabBar.toggleTopTabBar.transform = CGAffineTransformMakeRotation(M_PI);
+                                 [view setCenter:CGPointMake(view.center.x, view.center.y+amount)];
+                                 break;
+                             case JSTTBMoveDirectionLeft:
+                                 [view setCenter:CGPointMake(view.center.x - amount, view.center.y)];
+                                 break;
+                             case JSTTBMoveDirectionRight:
+                                 [view setCenter:CGPointMake(view.center.x + amount, view.center.y)];
+                                 break;
+                             default:
+                                 break;
+                         }
+                     }
+                     completion:block];
+}
+
+- (void)JSTTB_partialFade:(UIView*)view
+               finalAlpha:(CGFloat)alpha
+             withDuration:(NSTimeInterval)duration
+          completionBlock:(void (^)(BOOL finished))block
+{
+    [UIView animateWithDuration:duration
+                          delay:0
+                        options:kAnimationOptions
+                     animations:^{
+                         [view setAlpha:alpha];
+                     }
+                     completion:block];
+}
+
+- (void)JSTTB_adjustConstraint:(NSLayoutConstraint *)constraint
+                      constant:(CGFloat)constant
+                      duration:(NSTimeInterval)duration
+               completionBlock:(void (^)(BOOL))block
+{
+    [UIView animateWithDuration:duration
+                          delay:0
+                        options:kAnimationOptions
+                     animations:^{
+                         constraint.constant = constant;
+                         [self.view layoutIfNeeded];
+                     } completion:block];
 }
 
 @end
