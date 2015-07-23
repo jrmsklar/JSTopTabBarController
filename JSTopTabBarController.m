@@ -75,6 +75,12 @@ typedef enum {
  */
 @property (strong, nonatomic) NSLayoutConstraint *topTabBarButtonTopConstraint;
 
+/**
+ Top constraint for the toggle top tab bar button. Gets adjusted when the top tab
+ bar is toggled.
+ */
+@property (strong, nonatomic) NSLayoutConstraint *toggleTopTabBarButtonTopConstraint;
+
 @end
 
 @implementation JSTopTabBarController
@@ -242,24 +248,41 @@ typedef enum {
         
         [self constrainViewToEntireSuperview:self.overlay];
         
+        self.toggleTopTabBar = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.toggleTopTabBar.translatesAutoresizingMaskIntoConstraints = NO;
         
-        // Don't use AutoLayout for this, and enable panning it around
-        CGFloat buttonSize = 20.;
-        CGRect frame = CGRectMake(CGRectGetWidth(self.view.bounds) - (buttonSize + kToggleTopTabBarButtonBuffer),
-                                  buttonSize + kToggleTopTabBarButtonBuffer,
-                                  buttonSize,
-                                  buttonSize);
-        self.toggleTopTabBar = [[UIButton alloc]initWithFrame:frame];
-        [self enableShadowOnTopTabBarButton:YES];
-        [self.toggleTopTabBar addTarget:self action:@selector(didTapToggleTopTabBar:) forControlEvents:UIControlEventTouchUpInside];
-        [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:@"arrow-toptabbar"] forState:UIControlStateNormal];
         [self.view addSubview:self.toggleTopTabBar];
         [self.view bringSubviewToFront:self.toggleTopTabBar];
         
-        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
-                                                                           action:@selector(didPanToggleTopBarButton:)];
+        // Constrain it vertically
+        self.toggleTopTabBarButtonTopConstraint = [NSLayoutConstraint constraintWithItem:self.toggleTopTabBar
+                                                                               attribute:NSLayoutAttributeTop
+                                                                               relatedBy:NSLayoutRelationEqual
+                                                                                  toItem:self.view
+                                                                               attribute:NSLayoutAttributeTop
+                                                                              multiplier:1.
+                                                                                constant:kToggleTopTabBarButtonBuffer];
+        [self.view addConstraint:self.toggleTopTabBarButtonTopConstraint];
         
-        [self.toggleTopTabBar addGestureRecognizer:self.panGestureRecognizer];
+        // Constrain it horizontally
+        NSString *toggleTopTabBarKey = @"toggleTopTabBar";
+        views = [@{toggleTopTabBarKey: self.toggleTopTabBar} mutableCopy];
+        
+        NSString *spacingKey = @"spacing";
+        NSDictionary *toggleTopTabBarMetrics = @{spacingKey: @(kToggleTopTabBarButtonBuffer)};
+        
+        NSString *horizontalVisualFormatString =
+        [NSString stringWithFormat:@"H:[%@]-%@-|", toggleTopTabBarKey, spacingKey];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:horizontalVisualFormatString
+                                                                          options:kNilOptions
+                                                                          metrics:toggleTopTabBarMetrics
+                                                                            views:views]];
+
+        [self enableShadowOnTopTabBarButton:YES];
+        [self.toggleTopTabBar addTarget:self action:@selector(didTapToggleTopTabBar:) forControlEvents:UIControlEventTouchUpInside];
+        [self.toggleTopTabBar setBackgroundImage:[UIImage imageNamed:@"arrow-toptabbar"] forState:UIControlStateNormal];
+        
+        [self.view layoutIfNeeded];
         
         self.topTabBarPosition = JSTTBTopTabBarNotExposed;
         
