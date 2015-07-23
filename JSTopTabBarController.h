@@ -103,12 +103,6 @@
 - (void)setToggleTabBarButtonImage:(UIImage *)image;
 
 /**
- If not called, panning will be enabled.
- Sets whether or not the toggle tab bar button is pannable.
- */
-- (void)enablePanningOfToggleTopTabBarButton:(BOOL)panningEnabled;
-
-/**
  If not called, white borders will be present on top tab bar butons.
  Sets whether or not there are borders around the top tab bar buttons.
  */

@@ -32,11 +32,4 @@
     toggleShadow = !toggleShadow;
 }
 
-- (IBAction)didTapTogglePanning:(UIButton*)sender
-{
-    static BOOL togglePanning = YES;
-    [self.topTabBar enablePanningOfToggleTopTabBarButton:togglePanning];
-    togglePanning = !togglePanning;
-}
-
 @end

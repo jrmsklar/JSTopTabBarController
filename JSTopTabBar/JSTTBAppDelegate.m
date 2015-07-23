@@ -42,7 +42,6 @@
     [topTabBarController setBadgeNumber:3];
     
     // can also do [topTabBarController setActiveViewControllerWithIndex:3]
-    [topTabBarController enablePanningOfToggleTopTabBarButton:NO];
     
     self.window.rootViewController = topTabBarController;
     [self.window makeKeyAndVisible];

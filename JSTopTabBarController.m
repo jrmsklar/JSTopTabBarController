@@ -33,7 +33,7 @@ typedef enum {
 - (void)constrainViewToEntireSuperview:(UIView *)view;
 - (void)didTapToggleTopTabBar:(id)sender;
 - (void)didTapTopTabBarButton:(id)sender;
-- (void)didPanToggleTopBarButton:(id)sender;
+
 - (void)didTapOverlay:(id)sender;
 
 @property (nonatomic) JSTTBTopTabBarPosition topTabBarPosition;
@@ -42,11 +42,6 @@ typedef enum {
  Array of all of the buttons contained in the JSTopTabBarController.
  */
 @property (strong, nonatomic) NSMutableArray *topTabBarButtons;
-
-/**
- Used for the toggle top tab bar button.
- */
-@property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
 @property(nonatomic,copy) NSArray *viewControllers;
 
@@ -434,14 +429,6 @@ typedef enum {
     [self.toggleTopTabBar setBackgroundImage:image forState:UIControlStateNormal];
 }
 
-- (void)enablePanningOfToggleTopTabBarButton:(BOOL)panningEnabled
-{
-    if (!panningEnabled)
-        [self.toggleTopTabBar removeGestureRecognizer:self.panGestureRecognizer];
-    else
-        [self.toggleTopTabBar addGestureRecognizer:self.panGestureRecognizer];
-}
-
 - (void)enableBordersOnTopTabBarButtons:(BOOL)enabled
 {
     for (JSTopTabBarButton *btn in self.topTabBarButtons)
@@ -566,87 +553,6 @@ typedef enum {
     
     [self didTapToggleTopTabBar:nil];
 }
-
-- (void)didPanToggleTopBarButton:(id)sender
-{
-    UIPanGestureRecognizer *recognizer = (UIPanGestureRecognizer*)sender;
-    
-    CGFloat statusBarHeight = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
-    CGFloat screenWidth = CGRectGetWidth([UIScreen mainScreen].bounds);
-    CGFloat screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
-    
-    if (recognizer.state == UIGestureRecognizerStateChanged) {
-        
-        UIView *draggedButton = recognizer.view;
-        CGPoint translation = [recognizer translationInView:self.view];
-        
-        CGRect newButtonFrame = draggedButton.frame;
-        newButtonFrame.origin.x += translation.x;
-        newButtonFrame.origin.y += translation.y;
-        
-        // Don't allow dragging on the edges of the screen
-        if (newButtonFrame.origin.x <= 0)
-            newButtonFrame.origin.x = 0;
-        if (newButtonFrame.origin.y <= self.mainViewController.view.frame.origin.y)
-            newButtonFrame.origin.y = self.mainViewController.view.frame.origin.y;
-        
-        if (newButtonFrame.origin.x + newButtonFrame.size.width >= screenWidth)
-            newButtonFrame.origin.x = screenWidth - newButtonFrame.size.width;
-        if (newButtonFrame.origin.y + newButtonFrame.size.height >= screenHeight - statusBarHeight)
-            newButtonFrame.origin.y = screenHeight - newButtonFrame.size.height - statusBarHeight;
-        
-        draggedButton.frame = newButtonFrame;
-        
-        [recognizer setTranslation:CGPointZero inView:self.view];
-    }
-    else if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded) {
-        CGPoint translatedPoint = self.toggleTopTabBar.frame.origin;
-        
-        CGFloat yPos = translatedPoint.y;
-        CGFloat xPos = translatedPoint.x;
-        
-        CGFloat halfwayPointY = [UIScreen mainScreen].bounds.size.height/2;
-        CGFloat halfwayPointX = [UIScreen mainScreen].bounds.size.width/2;
-        
-        CGFloat yDistance, xDistance;
-        CGFloat finalY, finalX;
-        
-        // Find the distance to the closer y edge
-        if (yPos > halfwayPointY) {
-            yDistance = [UIScreen mainScreen].bounds.size.height - yPos;
-            finalY = [UIScreen mainScreen].bounds.size.height - self.toggleTopTabBar.frame.size.height - statusBarHeight;
-        }
-        else {
-            yDistance = yPos;
-            finalY = self.mainViewController.view.frame.origin.y + statusBarHeight + kToggleTopTabBarButtonBuffer;
-        }
-        // find distance to closer x edge
-        if (xPos > halfwayPointX) {
-            xDistance = [UIScreen mainScreen].bounds.size.width - xPos;
-            finalX = [UIScreen mainScreen].bounds.size.width - self.toggleTopTabBar.frame.size.width - kToggleTopTabBarButtonBuffer;
-        }
-        else {
-            xDistance = xPos;
-            finalX = kToggleTopTabBarButtonBuffer;
-        }
-        
-        CGFloat animationDuration = 0.1;
-        
-        [UIView animateWithDuration:animationDuration
-                              delay:0.
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             UIView *v = [sender view];
-                             if (xDistance < yDistance) {
-                                 [v setFrame:CGRectMake(finalX, v.frame.origin.y, v.frame.size.width, v.frame.size.height)];
-                             }
-                             else {
-                                 [v setFrame:CGRectMake(v.frame.origin.x, finalY, v.frame.size.width, v.frame.size.height)];
-                             }
-                         } completion:nil];
-    }
-}
-
 
 - (void)didTapOverlay:(id)sender
 {
